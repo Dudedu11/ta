@@ -1,3 +1,21 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "inventory";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM data_barang";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -31,7 +49,7 @@
 
     <nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
         <div class="logo d-flex justify-content-between">
-        <a href="index.html"><img src="img/logo.png" alt=""></a>
+        <a href="index.html"><img src="img/polban.png" alt=""></a>
         <div class="sidebar_close_icon d-lg-none">
         <i class="ti-close"></i>
         </div>
@@ -46,7 +64,7 @@
         </a>
         </li>
         <li class="">
-        <a href="data_table.html" aria-expanded="false">
+        <a href="data_table.php" aria-expanded="false">
         <div class="icon_menu">
         <img src="img/menu-icon/11.svg" alt="">
         </div>
@@ -205,27 +223,16 @@
 <div class="white_card_header">
 <div class="box_header m-0">
 <div class="main-title">
-<h3 class="m-0">Data table</h3>
 </div>
 </div>
 </div>
 <div class="white_card_body">
 <div class="QA_section">
 <div class="white_box_tittle list_header">
-<h4>Table</h4>
 <div class="box_right d-flex lms_block">
 <div class="serach_field_2">
 <div class="search_inner">
-<form Active="#">
-<div class="search_field">
-<input type="text" placeholder="Search content here...">
 </div>
-<button type="submit"> <i class="ti-search"></i> </button>
-</form>
-</div>
-</div>
-<div class="add_button ms-2">
-<a href="#" data-bs-toggle="modal" data-bs-target="#addcategory" class="btn_1">Add New</a>
 </div>
 </div>
 </div>
@@ -244,105 +251,31 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
- <td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
-<tr>
-<th scope="row"> <a href="#" class="question_content"> title here 1</a></th>
-<td>Category name</td>
-<td>Teacher James</td>
-<td>Lessons name</td>
-<td>16</td>
-<td>$25.00</td>
-<td><a href="#" class="status_btn">Active</a></td>
-</tr>
+<?php
+         if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+            ?>
+                <tr>           
+                <td ><?php echo $row['No'] ?></td>
+                <td ><?php echo $row['Nama Barang'] ?></td>
+                <td ><?php echo $row['Merk Barang'] ?></td>
+                <td ><?php echo $row['Jenis Barang'] ?></td>
+                <td ><?php echo $row['Jumlah Barang'] ?></td>
+                <td ><?php echo $row['Tahun Pengadaan'] ?></td>
+                <td ><?php echo $row['Kondisi Barang'] ?></td>
+                </tr>
+
+            </tr>
+            <?php
+                }
+
+                }else{
+                    echo "0 result";
+                }
+                $conn->close();
+            ?>
+
+
 </tbody>
 </table>
 </div>
@@ -361,7 +294,7 @@
 <div class="row">
 <div class="col-lg-12">
 <div class="footer_iner text-center">
-<p>2020 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
+<p>2022 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
 </div>
 </div>
 </div>
