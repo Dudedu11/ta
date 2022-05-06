@@ -245,50 +245,12 @@ $result = $conn->query($sql);
 </div>
 <div class="QA_table mb_30">
 
-<table class="table lms_table_active ">
-<thead>
-<tr>
-<th scope="col">No</th>    
-<th scope="col">Id_Barang</th>
-<th scope="col">Nama Barang</th>
-<th scope="col">Merk Barang</th>
-<th scope="col">Jenis Barang</th>
-<th scope="col">Tahun Pengadaan</th>
-<th scope="col">Status</th>
-</tr>
-</thead>
-<tbody>
-<?php
-         if ($result->num_rows > 0) {
-            $no = 1;
-                while($row = $result->fetch_assoc()) {
-            ?>
-                <tr>
-                <td ><?php echo $no ?></td>           
-                <td ><?php echo $row['id_barang'] ?></td>
-                <td ><?php echo $row['nama_barang'] ?></td>
-                <td ><?php echo $row['nama_merk'] ?></td>
-                <td ><?php echo $row['nama_jenis'] ?></td>
-                <td ><?php echo $row['tahun_pengadaan'] ?></td>
-                <td ><?php echo $row['nama_kondisi'] ?></td>
-                </tr>
 
-            </tr>
-
-            </tr>
-            <?php
-            $no++;
-                }
-
-                }else{
-                    echo "0 result";
-                }
-                $conn->close();
-            ?>
+<h3>
+    Input Data
+</h3>
 
 
-</tbody>
-</table>
 </div>
 </div>
 </div>
