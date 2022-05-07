@@ -1,102 +1,87 @@
-<?php
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "inventory";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.id_jenis, data_barang.id_merk, data_barang.id_kondisi,
-jenis.id_jenis, jenis.nama_jenis,
-merk.id_merk, merk.nama_merk,
-kondisi.id_kondisi, kondisi.nama_kondisi 
-FROM data_barang
-INNER JOIN jenis ON data_barang.id_jenis = jenis.id_jenis
-INNER JOIN merk ON data_barang.id_merk = merk.id_merk
-INNER JOIN kondisi ON data_barang.id_kondisi = kondisi.id_kondisi;";
-$result = $conn->query($sql);
-?>
-
 <!DOCTYPE html>
 <html lang="zxx">
 
-<!-- Mirrored from demo.dashboardpack.com/sales-html/data_table.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 06:33:36 GMT -->
+<!-- Mirrored from demo.dashboardpack.com/sales-html/Layouts.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 08:03:12 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>Sales</title>
-
+<link rel="icon" href="img/logo.png" type="image/png">
 
 <link rel="stylesheet" href="css/bootstrap1.min.css" />
 
 <link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
 
-<link rel="stylesheet" href="vendors/scroll/scrollable.css" />
+<link rel="stylesheet" href="vendors/niceselect/css/nice-select.css" />
+
+<link rel="stylesheet" href="vendors/owl_carousel/css/owl.carousel.css" />
+
+<link rel="stylesheet" href="vendors/gijgo/gijgo.min.css" />
 
 <link rel="stylesheet" href="vendors/font_awesome/css/all.min.css" />
+<link rel="stylesheet" href="vendors/tagsinput/tagsinput.css" />
+
+<link rel="stylesheet" href="vendors/datepicker/date-picker.css" />
+
+<link rel="stylesheet" href="vendors/scroll/scrollable.css" />
 
 <link rel="stylesheet" href="vendors/datatable/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="vendors/datatable/css/responsive.dataTables.min.css" />
 <link rel="stylesheet" href="vendors/datatable/css/buttons.dataTables.min.css" />
 
+<link rel="stylesheet" href="vendors/text_editor/summernote-bs4.css" />
+
+<link rel="stylesheet" href="vendors/morris/morris.css">
+
+<link rel="stylesheet" href="vendors/material_icon/material-icons.css" />
 
 <link rel="stylesheet" href="css/metisMenu.css">
 
 <link rel="stylesheet" href="css/style1.css" />
+<link rel="stylesheet" href="css/colors/default.css" id="colorSkinCSS">
 </head>
 <body class="crm_body_bg">
 
-    <nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
-        <div class="logo d-flex justify-content-between">
-        <a href="index.html"><img src="img/polban.png" alt=""></a>
-        <div class="sidebar_close_icon d-lg-none">
-        <i class="ti-close"></i>
-        </div>
-        </div>
-        <ul id="sidebar_menu">
-        <li class="mm-active">
-        <a href="index.html" aria-expanded="false">    
-        <div class="icon_menu">
-        <img src="img/menu-icon/dashboard.svg" alt="">
-        </div>
-        <span>Dashboard</span>
-        </a>
-        </li>
-        <li class="">
-        <a href="data_table.php" aria-expanded="false">
-        <div class="icon_menu">
-        <img src="img/menu-icon/11.svg" alt="">
-        </div>
-        <span>Table</span>
-        </a>
-        </li>
-        <li class="">
-        <a class="has-arrow" href="#" aria-expanded="false">
-        <div class="icon_menu">
-        <img src="img/menu-icon/16.svg" alt="">
-        </div>
-        <span>Pages</span>
-        </a>
-        <ul>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="resister.html">Register</a></li>
-        <li><a href="error_400.html">Error 404</a></li>
-        <li><a href="error_500.html">Error 500</a></li>
-        <li><a href="forgot_pass.html">Forgot Password</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-        </li>
-        </ul>
-        </nav>
-        
+
+<nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
+<div class="logo d-flex justify-content-between">
+<a href="index-2.html"><img src="img/logo.png" alt=""></a>
+<div class="sidebar_close_icon d-lg-none">
+<i class="ti-close"></i>
+</div>
+</div>
+<ul id="sidebar_menu">
+<li class="mm-active">
+<a class="has-arrow" href="#" aria-expanded="false">
+<div class="icon_menu">
+<img src="img/menu-icon/dashboard.svg" alt="">
+</div>
+<span>Dashboard</span>
+</a>
+<ul>
+<li><a class="active" href="index-2.html">Sales</a></li>
+<li><a href="index_2.html">Default</a></li>
+<li><a href="index_3.html">Dark Menu</a></li>
+</ul>
+</li>
+
+<li class="">
+<a class="has-arrow" href="#" aria-expanded="false">
+<div class="icon_menu">
+<img src="img/menu-icon/11.svg" alt=""> 
+</div>
+<span>Table</span>
+</a>
+<ul>
+<li><a href="data_table.php">Data Tables</a></li>
+<li><a href="bootstrap_table.html">Bootstrap</a></li>
+</ul>
+</li>
+
+</ul>
+</nav>
 
 <section class="main_content dashboard_part large_header_bg">
 
@@ -175,7 +160,7 @@ $result = $conn->query($sql);
 <a href="#"><img src="img/staf/4.png" alt=""></a>
 </div>
 <div class="notify_content">
-<a href="#"><h5>Awesome packages</h5></a>
+ <a href="#"><h5>Awesome packages</h5></a>
 <p>Lorem ipsum dolor sit amet</p>
 </div>
 </div>
@@ -187,7 +172,7 @@ $result = $conn->query($sql);
 <div class="notify_content">
 <a href="#"><h5>what a packages</h5></a>
 <p>Lorem ipsum dolor sit amet</p>
- </div>
+</div>
 </div>
 </div>
 <div class="nofity_footer">
@@ -223,51 +208,100 @@ $result = $conn->query($sql);
 </div>
 
 <div class="main_content_iner ">
-<div class="container-fluid p-0">
-<div class="row justify-content-center">
-<div class="col-lg-12">
+<div class="container-fluid p-0 sm_padding_15px">
+<div class="white_card card_height_100 mb_30">
+
+</div>
+</div>
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
 <div class="box_header m-0">
 <div class="main-title">
+<h6 class="m-0">Input Data</h6>
 </div>
 </div>
 </div>
 <div class="white_card_body">
-<div class="QA_section">
-<div class="white_box_tittle list_header">
-<div class="box_right d-flex lms_block">
-<div class="serach_field_2">
-<div class="search_inner">
+<form>
+<div class="mb-3 row">
+<label for="inputID" class="form-label col-sm-4 col-form-label">ID</label>
+<div class="col-sm-8">
+<input type="email" class="form-control" id="inputID" placeholder="ID barang">
 </div>
 </div>
-</div>
-</div>
-<div class="QA_table mb_30">
 
+<div class="mb-3 row">
+<label for="inputNamaBarang" class="form-label col-sm-4 col-form-label">Nama</label>
+<div class="col-sm-8">
+<input type="password" class="form-control" id="inputNamaBarang" placeholder="nama barang">
+</div>
+</div>
 
-<h3>
-    Input Data
-</h3>
+<div class="mb-3 row">
+<label for="inputJenis" class="form-label col-sm-4 col-form-label">Jenis</label>
+<div class="col-sm-8">
+<input type="password" class="form-control" id="inputJenis" placeholder="jenis barang">
+</div>
+</div>
 
+<div class="mb-3 row">
+<label for="inputMerek" class="form-label col-sm-4 col-form-label">Merek</label>
+<div class="col-sm-8">
+<input type="password" class="form-control" id="inputMerek" placeholder="merek barang">
+</div>
+</div>
 
+<div class="mb-3 row">
+<label for="inputTahun" class="form-label col-sm-4 col-form-label">Tahun Pengadaan</label>
+<div class="col-sm-8">
+<input type="password" class="form-control" id="inputTahun" placeholder="tahun pengadaan barang">
+</div>
+</div>
+
+<fieldset class="">
+<div class="row">
+<div class="col-form-label col-sm-4 pt-0">Kondisi</div>
+<div class="col-sm-8">
+<div class="form-check">
+<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+<label class="form-label form-check-label" for="gridRadios1">
+Baik
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="radio" name="gridRadios" id="baik" value="option2">
+<label class="form-label form-check-label" for="gridRadios2">
+Rusak
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input" type="radio" name="gridRadios" id="rusak" value="option3">
+<label class="form-label form-check-label" for="gridRadios3">
+Rusak Berat
+</label>
+</div>
+</label>
 </div>
 </div>
 </div>
+</fieldset>
+
+<div class=" row">
+<div class="col-sm-10">
+<button type="submit" class="btn btn-primary">Insert</button>
 </div>
 </div>
-<div class="col-12">
-</div>
+</form>
 </div>
 </div>
 </div>
 
 <div class="footer_part">
-<div class="container">
+<div class="container-fluid">
 <div class="row">
 <div class="col-lg-12">
 <div class="footer_iner text-center">
-<p>2022 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
+<p>2020 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
 </div>
 </div>
 </div>
@@ -380,14 +414,11 @@ How can I help you?</P>
 </div>
 </div>
 </div>
-
 <div id="back-top" style="display: none;">
 <a title="Go to Top" href="#">
 <i class="ti-angle-up"></i>
 </a>
 </div>
-
-
 
 <script src="js/jquery1-3.4.1.min.js"></script>
 
@@ -396,6 +427,16 @@ How can I help you?</P>
 <script src="js/bootstrap.min.html"></script>
 
 <script src="js/metisMenu.js"></script>
+
+<script src="vendors/count_up/jquery.waypoints.min.js"></script>
+
+<script src="vendors/chartlist/Chart.min.js"></script>
+
+<script src="vendors/count_up/jquery.counterup.min.js"></script>
+
+<script src="vendors/niceselect/js/jquery.nice-select.min.js"></script>
+
+<script src="vendors/owl_carousel/js/owl.carousel.min.js"></script>
 
 <script src="vendors/datatable/js/jquery.dataTables.min.js"></script>
 <script src="vendors/datatable/js/dataTables.responsive.min.js"></script>
@@ -406,12 +447,25 @@ How can I help you?</P>
 <script src="vendors/datatable/js/vfs_fonts.js"></script>
 <script src="vendors/datatable/js/buttons.html5.min.js"></script>
 <script src="vendors/datatable/js/buttons.print.min.js"></script>
+<script src="js/chart.min.js"></script>
+
+<script src="vendors/progressbar/jquery.barfiller.js"></script>
+
+<script src="vendors/tagsinput/tagsinput.js"></script>
+
+<script src="vendors/text_editor/summernote-bs4.js"></script>
+<script src="vendors/am_chart/amcharts.js"></script>
 
 <script src="vendors/scroll/perfect-scrollbar.min.js"></script>
 <script src="vendors/scroll/scrollable-custom.js"></script>
+<script src="vendors/chart_am/core.js"></script>
+<script src="vendors/chart_am/charts.js"></script>
+<script src="vendors/chart_am/animated.js"></script>
+<script src="vendors/chart_am/kelly.js"></script>
+<script src="vendors/chart_am/chart-custom.js"></script>
 
 <script src="js/custom.js"></script>
 </body>
 
-<!-- Mirrored from demo.dashboardpack.com/sales-html/data_table.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 06:33:36 GMT -->
+<!-- Mirrored from demo.dashboardpack.com/sales-html/Layouts.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 08:03:12 GMT -->
 </html>
