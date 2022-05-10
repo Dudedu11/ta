@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Log in</title>
+	<link rel="icon" href="img/logo2.png" type="image/png">
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -36,7 +37,7 @@
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
-            	<input type="submit" class="btn" value="Login" name="submit">
+            	<input type="submit" class="btn" value="Log in" name="submit">
             </form>
         </div>
     </div>
