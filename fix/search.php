@@ -12,12 +12,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.id_jenis, data_barang.id_merk, data_barang.kondisi,
+$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.id_jenis, data_barang.id_merk, data_barang.id_kondisi,
 jenis.id_jenis, jenis.nama_jenis,
-merk.id_merk, merk.nama_merk
+merk.id_merk, merk.nama_merk,
+kondisi.id_kondisi, kondisi.nama_kondisi 
 FROM data_barang
 INNER JOIN jenis ON data_barang.id_jenis = jenis.id_jenis
-INNER JOIN merk ON data_barang.id_merk = merk.id_merk order by data_barang.nama_barang asc;";
+INNER JOIN merk ON data_barang.id_merk = merk.id_merk
+INNER JOIN kondisi ON data_barang.id_kondisi = kondisi.id_kondisi;";
 $result = $conn->query($sql);
 ?>
 
@@ -30,7 +32,7 @@ $result = $conn->query($sql);
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>Data Barang</title>
+<title>Sales</title>
 
 
 <link rel="stylesheet" href="css/bootstrap1.min.css" />
@@ -107,6 +109,12 @@ $result = $conn->query($sql);
 </div>
 <div class="serach_field-area d-flex align-items-center">
 <div class="search_inner">
+<form action="#" method='get'>
+<div class="search_field">
+<input type="text" placeholder="Search here...">
+</div>
+<button type="submit" value='cari'> <img src="img/icon/icon_search.svg" alt=""> </button>
+</form>
 </div>
 <span class="f_s_14 f_w_400 ml_25 white_text text_white">Apps</span>
 </div>
@@ -195,11 +203,11 @@ $result = $conn->query($sql);
 </li>
 </div>
 <div class="profile_info">
-<img src="img/teteh.jpeg" alt="#">
+<img src="img/client_img.png" alt="#">
 <div class="profile_info_iner">
 <div class="profile_author_name">
-<p>Jabatan </p>
-<h5>Zahra Maulida</h5>
+<p>Neurologist </p>
+<h5>Dr. Robar Smith</h5>
 </div>
 <div class="profile_info_details">
 <a href="#">My Profile </a>
@@ -250,11 +258,27 @@ $result = $conn->query($sql);
 </tr>
 </thead>
 <tbody>
-<?php
-         if ($result->num_rows > 0) {
+
+<?php 
+            if(isset($_GET['cari'])) {
+                $cari = $_GET['cari'];
+                $data = mysqli_query($conn,"select
+                data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.id_jenis, data_barang.id_merk, data_barang.id_kondisi,
+                jenis.id_jenis, jenis.nama_jenis,
+                merk.id_merk, merk.nama_merk,
+                kondisi.id_kondisi, kondisi.nama_kondisi 
+                FROM data_barang
+                INNER JOIN jenis ON data_barang.id_jenis = jenis.id_jenis
+                INNER JOIN merk ON data_barang.id_merk = merk.id_merk
+                INNER JOIN kondisi ON data_barang.id_kondisi = kondisi.id_kondisi
+                from data_barang where nama like '%".$cari."%'");    
+            } else {
+                $data = mysqli_query($conn,"select * from data_barang");  
+            }
+
             $no = 1;
-                while($row = $result->fetch_assoc()) {
-            ?>
+            while($row = mysqli_fetch_array($data)) {
+        ?>
                 <tr>
                 <td ><?php echo $no ?></td>           
                 <td ><?php echo $row['id_barang'] ?></td>
@@ -262,20 +286,14 @@ $result = $conn->query($sql);
                 <td ><?php echo $row['nama_merk'] ?></td>
                 <td ><?php echo $row['nama_jenis'] ?></td>
                 <td ><?php echo $row['tahun_pengadaan'] ?></td>
-                <td ><?php echo $row['kondisi'] ?></td>
+                <td ><?php echo $row['nama_kondisi'] ?></td>
                 </tr>
 
             </tr>
 
             </tr>
             <?php
-            $no++;
                 }
-
-                }else{
-                    echo "0 result";
-                }
-                $conn->close();
             ?>
 
 

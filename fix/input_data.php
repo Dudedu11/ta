@@ -11,19 +11,16 @@ $kodeBarang = $huruf . sprintf("%03s", $urutan);
 
 if(isset($_POST['submit'])){
     $nama = $_POST['nama'];
-    $jenis = $_POST['jenis'];
-    $merek = $_POST['merek'];
+    $jenis = $_POST['id_jenis'];
+    $merek = $_POST['id_merek'];
     $tahun = $_POST['tahun'];
-    $cek = mysqli_query($conn, "SELECT * FROM jenis WHERE nama_jenis='$jenis'");
-    if(mysqli_num_rows($cek) == 0){
-        $insert = mysqli_query($conn, "INSERT INTO jenis(nama_jenis) VALUES('$jenis')") or die(mysqli_error());
-        if($insert){
-            echo 'Data berhasil disimpan!';
-        }else{
-            echo 'Data gagal di simpan!';
-        }
+    $kondisi = $_POST['kondisi'];
+    
+    $insert = mysqli_query($conn,"INSERT INTO data_barang VALUES ('$kodeBarang', '$nama', '$tahun','$merek','$jenis','$kondisi')");
+    if($insert){
+        header("location: input_data.php");
     }else{
-        echo 'Data sudah ada!';
+        echo '<center>Gagal Upload</center>';
     }
 }
 ?>
@@ -252,14 +249,14 @@ if(isset($_POST['submit'])){
 <div class="mb-3 row">
 <label for="inputNamaBarang" class="form-label col-sm-2 col-form-label">Nama</label>
 <div class="col-sm-8">
-<input type="type" class="form-control" id="inputNamaBarang" placeholder="ex. Eigon Office Desk">
+<input type="type" name="nama" class="form-control" id="inputNamaBarang" placeholder="ex. Eigon Office Desk">
 </div>
 </div>
 
 <div class="mb-3 row">
 <label class="form-label col-sm-2 col-form-label">Jenis</label>
 <div class="col-sm-8">
-<select name="kdoe" id="inputJenis" class="form-control" required>
+<select name="id_jenis" id="inputJenis" class="form-control" required>
 <option value=""> -- Pilih Jenis -- </option>
 <?php 
 $query1="select * from jenis";
@@ -274,13 +271,13 @@ while($data=mysqli_fetch_array($tampil)) {
 <div class="mb-3 row">
 <label class="form-label col-sm-2 col-form-label">Merek</label>
 <div class="col-sm-8">
-<select name="kdoe" id="inputJenis" class="form-control" required>
+<select name="id_merek" id="inputMerek" class="form-control" required>
 <option value=""> -- Pilih Merek -- </option>
 <?php 
 $query1="select * from merk";
 $tampil=mysqli_query($conn, $query1) or die(mysqli_error());
 while($data=mysqli_fetch_array($tampil)) {
-?><option value="<?php echo $data['nama_merk'];?>"><?php echo $data['nama_merk'];?></option>
+?><option value="<?php echo $data['id_merk'];?>"><?php echo $data['nama_merk'];?></option>
 <?php } ?>
 </select>
 </div>
@@ -289,7 +286,7 @@ while($data=mysqli_fetch_array($tampil)) {
 <div class="mb-3 row">
 <label for="inputTahun" class="form-label col-sm-2 col-form-label">Tahun Pengadaan</label>
 <div class="col-sm-8">
-<input type="number" min="1000" max="9999" class="form-control" id="inputTahun" placeholder="ex. 2020">
+<input type="number" name="tahun" min="1000" max="9999" class="form-control" id="inputTahun" placeholder="ex. 2020">
 </div>
 </div>
 
@@ -298,19 +295,19 @@ while($data=mysqli_fetch_array($tampil)) {
 <div class="col-form-label col-sm-2 pt-0">Kondisi</div>
 <div class="col-sm-8">
 <div class="form-check">
-<input class="form-check-input" type="radio" name="gridRadios" id="baik" value="option1">
+<input class="form-check-input" type="radio" name="kondisi" id="baik" value="Baik">
 <label class="form-label form-check-label" for="gridRadios1">
 Baik
 </label>
 </div>
 <div class="form-check">
-<input class="form-check-input" type="radio" name="gridRadios" id="rusak" value="option2">
+<input class="form-check-input" type="radio" name="kondisi" id="rusak" value="Rusak">
 <label class="form-label form-check-label" for="gridRadios2">
 Rusak
 </label>
 </div>
 <div class="form-check">
-<input class="form-check-input" type="radio" name="gridRadios" id="rusak berat" value="option3">
+<input class="form-check-input" type="radio" name="kondisi" id="rusak berat" value="Rusak Berat">
 <label class="form-label form-check-label" for="gridRadios3">
 Rusak Berat
 </label>
@@ -323,7 +320,7 @@ Rusak Berat
 
 <div class=" row">
 <div class="col-sm-10">
-<button type="submit" class="btn btn-primary">Insert</button>
+<td><input type="submit" class="btn btn-primary" name="submit" value="Insert"></td>
 </div>
 </div>
 </form>
