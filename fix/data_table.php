@@ -71,11 +71,20 @@ $result = $conn->query($sql);
         <li class="">
         <a href="data_table.php" aria-expanded="false">
         <div class="icon_menu">
-        <img src="img/menu-icon/11.svg" alt="">
+        <img src="img/menu-icon/13.svg" alt="">
         </div>
         <span>Table</span>
         </a>
         </li>
+        <li class="">
+        <a href="input_data.php" aria-expanded="false">
+        <div class="icon_menu">
+        <img src="img/menu-icon/11.svg" alt="">
+        </div>
+        <span>Input Data</span>
+        </a>
+        </li>
+
         <li class="">
         <a class="has-arrow" href="#" aria-expanded="false">
         <div class="icon_menu">
