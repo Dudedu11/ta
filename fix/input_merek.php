@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
 <div class="white_card_header">
 <div class="box_header m-0">
 <div class="main-title">
-<h2 class="m-0">Input Data</h2>
+<h2 class="m-0">Input Merek</h2>
 </div>
 </div>
 </div>

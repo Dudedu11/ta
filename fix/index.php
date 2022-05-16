@@ -80,29 +80,17 @@ if (!$_SESSION["is_login"] == TRUE) {
         <span>Table</span>
         </a>
         </li>
+
         <li class="">
-        <a href="index.php?page=input_data" aria-expanded="false">
+        <a class="has-arrow" href="#" aria-expanded="false">
         <div class="icon_menu">
         <img src="img/menu-icon/11.svg" alt="">
         </div>
         <span>Input Data</span>
         </a>
-        </li>
-
-        <li class="">
-        <a class="has-arrow" href="#" aria-expanded="false">
-        <div class="icon_menu">
-        <img src="img/menu-icon/16.svg" alt="">
-        </div>
-        <span>Pages</span>
-        </a>
         <ul>
-        <li><a href="login.html">Login</a></li>
-        <li><a href="resister.html">Register</a></li>
-        <li><a href="error_400.html">Error 404</a></li>
-        <li><a href="error_500.html">Error 500</a></li>
-        <li><a href="forgot_pass.html">Forgot Password</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="index.php?page=input_barang">Input Barang</a></li>
+        <li><a href="index.php?page=input_merek">Input Merek</a></li>
         </ul>
         </li>
         </ul>
@@ -243,8 +231,10 @@ if (!$_SESSION["is_login"] == TRUE) {
                     include "home.php";
                 }else if ($_GET['page'] == "cek_status") {
                     include "cek_status.php";
-                }else if ($_GET['page'] == "input_data") {
-                    include "input_data.php";
+                }else if ($_GET['page'] == "input_barang") {
+                    include "input_barang.php";
+                }else if ($_GET['page'] == "input_merek") {
+                    include "input_merek.php";
                 }else{ 
                     include "home.php";
                 }

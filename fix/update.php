@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
     $query="UPDATE data_barang set nama_barang='$nama', tahun_pengadaan='$tahun', id_merk='$merek',id_jenis='$jenis',kondisi='$kondisi' where id_barang='$id_barang'";
 			$result = mysqli_query($conn, $query);
 			if($result){
-				header("location: data_table.php");
+				header("location: index.php?page=data_table");
 				
 			}else{
 				echo "Update Gagal";

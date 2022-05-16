@@ -48,6 +48,7 @@ $result = $conn->query($sql);
 <th scope="col">Jenis Barang</th>
 <th scope="col">Tahun Pengadaan</th>
 <th scope="col">Status</th>
+<th scope="col">Aksi</th>
 </tr>
 </thead>
 <tbody>
@@ -81,6 +82,8 @@ $result = $conn->query($sql);
                 <td ><?php echo $row['nama_jenis'] ?></td>
                 <td ><?php echo $row['tahun_pengadaan'] ?></td>
                 <td ><?php echo $row['kondisi'] ?></td>
+                <td ><a href="update.php? id=<?=$row['id_barang']?>">Update</a>
+                <a href="delete.php? id=<?=$row['id_barang']?>">Delete</a></td>
                 </tr>
 
             </tr>

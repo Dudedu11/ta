@@ -20,5 +20,5 @@ $result    =mysqli_fetch_array($query);
 $query="Delete from data_barang WHERE id_barang = '$id_barang'";
 $result = mysqli_query($conn, $query);
 
-header("location: data_table.php");
+header("location: index.php?page=data_table");
 ?>
