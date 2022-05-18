@@ -11,7 +11,7 @@ $kodeBarang = $huruf . sprintf("%03s", $urutan);
 
 if(isset($_POST['submit'])){
     $nama = $_POST['nama'];
-    $jenis = $_POST['id_jenis'];
+    $jenis = $_POST['jenis'];
     $merek = $_POST['id_merek'];
     $tahun = $_POST['tahun'];
     $kondisi = $_POST['kondisi'];
@@ -58,19 +58,13 @@ if(isset($_POST['submit'])){
 </div>
 
 <div class="mb-3 row">
-<label class="form-label col-sm-2 col-form-label">Jenis</label>
+<label for="inputNamaBarang" class="form-label col-sm-2 col-form-label">Nama</label>
 <div class="col-sm-8">
-<select name="id_jenis" id="inputJenis" class="form-control" required>
-<option value=""> -- Pilih Jenis -- </option>
-<?php 
-$query1="select * from jenis";
-$tampil=mysqli_query($conn, $query1) or die(mysqli_error());
-while($data=mysqli_fetch_array($tampil)) {
-?><option value="<?php echo $data['id_jenis'];?>"><?php echo $data['nama_jenis'];?></option>
-<?php } ?>
-</select>
+<input type="type" name="jenis" class="form-control" id="inputNamaBarang" placeholder="ex. Bahan logam emas">
 </div>
 </div>
+
+
 
 <div class="mb-3 row">
 <label class="form-label col-sm-2 col-form-label">Merek</label>

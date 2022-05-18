@@ -80,17 +80,60 @@ if (!$_SESSION["is_login"] == TRUE) {
         <span>Table</span>
         </a>
         </li>
-
         <li class="">
-        <a class="has-arrow" href="#" aria-expanded="false">
+<a class="has-arrow" href="#" aria-expanded="false">
+<div class="icon_menu">
+<img src="img/menu-icon/11.svg" alt="">
+</div>
+<span>Input Data</span>
+</a>
+<ul>
+<li><a href="index.php?page=input_barang">Input Barang</a></li>
+<li><a href="index.php?page=input_merek">Input Merk</a></li>
+</ul>
+</li>
+
+        <!-- <li class="">
+        <a href="index.php?page=input_data" aria-expanded="false">
         <div class="icon_menu">
         <img src="img/menu-icon/11.svg" alt="">
         </div>
         <span>Input Data</span>
         </a>
+        </li> -->
+
+        <li class="">
+        <a href="index.php?page=kondisi" aria-expanded="false">
+        <div class="icon_menu">
+        <img src="img/menu-icon/11.svg" alt="">
+        </div>
+        <span>Kondisi Barang</span>
+        </a>
+        </li>
+
+        <li class="">
+        <a href="index.php?page=laporan" aria-expanded="false">
+        <div class="icon_menu">
+        <img src="img/menu-icon/11.svg" alt="">
+        </div>
+        <span>Laporan</span>
+        </a>
+        </li>
+
+        <li class="">
+        <a class="has-arrow" href="#" aria-expanded="false">
+        <div class="icon_menu">
+        <img src="img/menu-icon/16.svg" alt="">
+        </div>
+        <span>Pages</span>
+        </a>
         <ul>
-        <li><a href="index.php?page=input_barang">Input Barang</a></li>
-        <li><a href="index.php?page=input_merek">Input Merek</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="resister.html">Register</a></li>
+        <li><a href="error_400.html">Error 404</a></li>
+        <li><a href="error_500.html">Error 500</a></li>
+        <li><a href="forgot_pass.html">Forgot Password</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         </ul>
         </li>
         </ul>
@@ -106,14 +149,6 @@ if (!$_SESSION["is_login"] == TRUE) {
 <i class="ti-menu"></i>
 </div>
 <div class="serach_field-area d-flex align-items-center">
-<div class="search_inner">
-<form action="#">
-<div class="search_field">
-<input type="text" placeholder="Search here...">
-</div>
-<button type="submit"> <img src="img/icon/icon_search.svg" alt=""> </button>
- </form>
-</div>
 <span class="f_s_14 f_w_400 ml_25 white_text text_white">Apps</span>
 </div>
 <div class="header_right d-flex justify-content-between align-items-center">
@@ -227,14 +262,20 @@ if (!$_SESSION["is_login"] == TRUE) {
                     include "home.php";
                 }else if ($_GET['page'] == "data_table") {
                     include "data_table.php";
-                }else if ($_GET['page'] == "home") {
-                    include "home.php";
-                }else if ($_GET['page'] == "cek_status") {
-                    include "cek_status.php";
                 }else if ($_GET['page'] == "input_barang") {
                     include "input_barang.php";
                 }else if ($_GET['page'] == "input_merek") {
                     include "input_merek.php";
+                }else if ($_GET['page'] == "home") {
+                    include "home.php";
+                }else if ($_GET['page'] == "cek_status") {
+                    include "cek_status.php";
+                }else if ($_GET['page'] == "input_data") {
+                    include "input_data.php";
+                }else if ($_GET['page'] == "kondisi") {
+                    include "kondisi.php";
+                }else if ($_GET['page'] == "laporan") {
+                    include "laporan.php";
                 }else{ 
                     include "home.php";
                 }

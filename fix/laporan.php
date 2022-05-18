@@ -2,15 +2,23 @@
 
 include 'connection.php';
 
-$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
-merk.id_merk, merk.nama_merk
-FROM data_barang
-INNER JOIN merk ON data_barang.id_merk = merk.id_merk order by data_barang.nama_barang asc;";
-$result = $conn->query($sql);
+       $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+       merk.id_merk, merk.nama_merk, sum(IF(data_barang.kondisi='Baik',1,0)) as baik,
+       sum(IF(data_barang.kondisi='Rusak',1,0)) as rusak,
+       sum(IF(data_barang.kondisi='Rusak Berat',1,0)) as rusak_berat , count(*) as total                                  
+       FROM data_barang
+       INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
+       group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
+        $result = $conn->query($sql);
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="zxx">
+
+
+
 
 
 <div class="main_content_iner ">
@@ -36,30 +44,18 @@ $result = $conn->query($sql);
 </div>
 <div class="QA_table mb_30">
 
-<div class="serach_field-area d-flex align-items-center">
-<div class="search_inner">
-<form action="#">
-<div class="search_field">
-<input type="text" placeholder="Search here...">
-</div>
-<button type="submit"> <img src="img/icon/icon_search.svg" alt=""> </button>
- </form>
-</div>
-<span class="f_s_14 f_w_400 ml_25 white_text text_white">Apps</span>
-</div>
-
-
 <table class="table lms_table_active ">
 <thead>
 <tr>
 <th scope="col">No</th>    
-<th scope="col">Id_Barang</th>
 <th scope="col">Nama Barang</th>
 <th scope="col">Merk Barang</th>
-<th scope="col">Jenis Barang</th>
+<th scope="col" width="20px">Jenis Barang</th>
 <th scope="col">Tahun Pengadaan</th>
-<th scope="col">Status</th>
-<th scope="col">Aksi</th>
+<th scope="col">Baik</th>
+<th scope="col">Rusak</th>
+<th scope="col">Rusak Berat</th>
+<th scope="col">Total</th>
 </tr>
 </thead>
 <tbody>
@@ -85,14 +81,14 @@ $result = $conn->query($sql);
         ?>
                 <tr>
                 <td ><?php echo $no ?></td>           
-                <td ><?php echo $row['id_barang'] ?></td>
                 <td ><?php echo $row['nama_barang'] ?></td>
                 <td ><?php echo $row['nama_merk'] ?></td>
-                <td ><?php echo $row['jenis'] ?></td>
+                <td width="20px" ><?php echo $row['jenis'] ?></td>
                 <td ><?php echo $row['tahun_pengadaan'] ?></td>
-                <td ><?php echo $row['kondisi'] ?></td>
-                <td ><a href="update.php? id=<?=$row['id_barang']?>">Update</a>
-                <a href="delete.php? id=<?=$row['id_barang']?>">Delete</a></td>
+                <td ><?php echo $row['baik'] ?></td>
+                <td ><?php echo $row['rusak'] ?></td>
+                <td ><?php echo $row['rusak_berat'] ?></td>
+                <td ><?php echo $row['total'] ?></td>
                 </tr>
 
             </tr>

@@ -6,11 +6,9 @@
         die ("Error. No ID Selected!");    
     }
     include "connection.php";
-    $query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.id_jenis, data_barang.id_merk, data_barang.kondisi,
-    jenis.id_jenis, jenis.nama_jenis,
+    $query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
     merk.id_merk, merk.nama_merk
     FROM data_barang
-    INNER JOIN jenis ON data_barang.id_jenis = jenis.id_jenis
     INNER JOIN merk ON data_barang.id_merk = merk.id_merk WHERE data_barang.id_barang='$id'");
     $result    =mysqli_fetch_array($query);
 ?>
@@ -96,7 +94,7 @@
         </tr>
         <tr>
             <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Jenis Barang</th>
-            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['nama_jenis']?></td>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['jenis']?></td>
         </tr>
         <tr>
             <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Tahun Pengadaan</th>
