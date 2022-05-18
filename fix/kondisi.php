@@ -54,18 +54,6 @@ if(isset($_GET['kondisi'])){
 <html lang="zxx">
 
 
-<div class="row mx-auto">
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-success" name="Baik" value="Baik" onClick="location.href='index.php?page=kondisi&kondisi=baik'">
-</div>
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-warning" name="Rusak" value="Rusak" onClick="location.href='index.php?page=kondisi&kondisi=rusak'">
-</div>
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-danger" name="Rusak Berat" value="Rusak Berat" onClick="location.href='index.php?page=kondisi&kondisi=rusak_berat'">
-</div>
-</div>
-
 
 <div class="main_content_iner ">
 <div class="container-fluid p-0">
@@ -89,6 +77,21 @@ if(isset($_GET['kondisi'])){
 </div>
 </div>
 <div class="QA_table mb_30">
+
+<div class="row mx-auto">
+<div class="col-lg-2 mx-auto">
+<input type="button" class="btn btn-danger" name="All" value="All" onClick="location.href='index.php?page=laporan'">
+</div>
+<div class="col-lg-2 mx-auto">
+<input type="button" class="btn btn-success" name="Baik" value="Baik" onClick="location.href='index.php?page=kondisi&kondisi=baik'">
+</div>
+<div class="col-lg-2 mx-auto">
+<input type="button" class="btn btn-warning" name="Rusak" value="Rusak" onClick="location.href='index.php?page=kondisi&kondisi=rusak'">
+</div>
+<div class="col-lg-2 mx-auto">
+<input type="button" class="btn btn-danger" name="Rusak Berat" value="Rusak Berat" onClick="location.href='index.php?page=kondisi&kondisi=rusak_berat'">
+</div>
+</div>
 
 <table class="table lms_table_active ">
 <thead>
