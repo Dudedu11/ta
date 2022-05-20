@@ -1,5 +1,4 @@
 <?php
-
 include 'connection.php';
 
 $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
@@ -11,7 +10,6 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html lang="zxx">
-
 
 <div class="main_content_iner ">
     <div class="container-fluid p-0">
@@ -38,11 +36,11 @@ $result = $conn->query($sql);
 
                                 <div class="serach_field-area d-flex align-items-center">
                                     <div class="search_inner">
-                                        <form action="#">
+                                        <form action="index.php?page=data_table" method="get">
                                             <div class="search_field">
-                                                <input type="text" placeholder="Search here...">
+                                                <input type="text" name="cari" placeholder="Cari barang...">
                                             </div>
-                                            <button type="submit"> <img src="img/icon/icon_search.svg" alt=""> </button>
+                                            <button type="submit" value="Cari"> <img src="img/icon/icon_search.svg" alt=""> </button>
                                         </form>
                                     </div>
                                     <span class="f_s_14 f_w_400 ml_25 white_text text_white">Apps</span>
@@ -62,20 +60,20 @@ $result = $conn->query($sql);
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
 
+                                    <tbody>
                                         <?php
                                         if (isset($_GET['cari'])) {
                                             $cari = $_GET['cari'];
                                             $data = mysqli_query($conn, "SELECT
-                data_barang.id_barang, data_barang.nama_barang,
-                data_barang.tahun_pengadaan, data_barang.jenis,
-                data_barang.id_merk, data_barang.kondisi,
-                merk.id_merk, merk.nama_merk
-                FROM data_barang
-                INNER JOIN merk ON data_barang.id_merk = merk.id_merk
-                WHERE nama_barang LIKE '%" . $cari . "%'
-                ORDER BY data_barang.nama_barang ASC");
+                                                data_barang.id_barang, data_barang.nama_barang,
+                                                data_barang.tahun_pengadaan, data_barang.jenis,
+                                                data_barang.id_merk, data_barang.kondisi,
+                                                merk.id_merk, merk.nama_merk
+                                                FROM data_barang
+                                                INNER JOIN merk ON data_barang.id_merk = merk.id_merk
+                                                WHERE nama_barang LIKE '%" . $cari . "%'
+                                                ORDER BY data_barang.nama_barang ASC");
                                         } else {
                                             $data = $result;
                                         }
@@ -95,17 +93,13 @@ $result = $conn->query($sql);
                                                     <a href="delete.php? id=<?= $row['id_barang'] ?>">Delete</a>
                                                 </td>
                                             </tr>
-
                                             </tr>
-
                                             </tr>
                                         <?php
                                             $no++;
                                         }
                                         $conn->close();
                                         ?>
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -131,9 +125,6 @@ $result = $conn->query($sql);
     </div>
 </div>
 </section>
-
-
-
 
 <!-- Mirrored from demo.dashboardpack.com/sales-html/data_table.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 06:33:36 GMT -->
 

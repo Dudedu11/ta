@@ -76,16 +76,12 @@ if (!$_SESSION["is_login"] == TRUE) {
                 </a>
             </li>
             <li class="">
-                <a class="has-arrow" href="#" aria-expanded="false">
+                <a href="index.php?page=data_table" aria-expanded="false">
                     <div class="icon_menu">
                         <img src="img/menu-icon/13.svg" alt="">
                     </div>
                     <span>Table</span>
                 </a>
-                <ul>
-                    <li><a href="index.php?page=data_table">Satuan Barang</a></li>
-                    <li><a href="index.php?page=laporan">Perkondisi</a></li>
-                </ul>
             </li>
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -97,6 +93,50 @@ if (!$_SESSION["is_login"] == TRUE) {
                 <ul>
                     <li><a href="index.php?page=input_barang">Input Barang</a></li>
                     <li><a href="index.php?page=input_merek">Input Merk</a></li>
+                </ul>
+            </li>
+
+            <!-- <li class="">
+        <a href="index.php?page=input_data" aria-expanded="false">
+        <div class="icon_menu">
+        <img src="img/menu-icon/11.svg" alt="">
+        </div>
+        <span>Input Data</span>
+        </a>
+        </li> -->
+
+            <li class="">
+                <a href="index.php?page=kondisi" aria-expanded="false">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/11.svg" alt="">
+                    </div>
+                    <span>Kondisi Barang</span>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="index.php?page=laporan" aria-expanded="false">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/11.svg" alt="">
+                    </div>
+                    <span>Laporan</span>
+                </a>
+            </li>
+
+            <li class="">
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/16.svg" alt="">
+                    </div>
+                    <span>Pages</span>
+                </a>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="resister.html">Register</a></li>
+                    <li><a href="error_400.html">Error 404</a></li>
+                    <li><a href="error_500.html">Error 500</a></li>
+                    <li><a href="forgot_pass.html">Forgot Password</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
                 </ul>
             </li>
         </ul>
@@ -232,8 +272,10 @@ if (!$_SESSION["is_login"] == TRUE) {
 
 
         <?php
-        if (isset($_GET['page'])) {
-            if ($_GET['page'] == "home") {
+        if (isset($_GET['page']) || isset($_GET['cari'])) {
+            if (isset($_GET['cari'])) {
+                include "data_table.php";
+            } else if ($_GET['page'] == "home") {
                 include "home.php";
             } else if ($_GET['page'] == "data_table") {
                 include "data_table.php";
@@ -280,7 +322,7 @@ if (!$_SESSION["is_login"] == TRUE) {
                     <path d="M7.09939 5.98831L11.772 10.661C12.076 10.965 12.076 11.4564 11.772 11.7603C11.468 12.0643 10.9766 12.0643 10.6726 11.7603L5.99994 7.08762L1.32737 11.7603C1.02329 12.0643 0.532002 12.0643 0.228062 11.7603C-0.0760207 11.4564 -0.0760207 10.965 0.228062 10.661L4.90063 5.98831L0.228062 1.3156C-0.0760207 1.01166 -0.0760207 0.520226 0.228062 0.216286C0.379534 0.0646715 0.578697 -0.0114918 0.777717 -0.0114918C0.976738 -0.0114918 1.17576 0.0646715 1.32737 0.216286L5.99994 4.889L10.6726 0.216286C10.8243 0.0646715 11.0233 -0.0114918 11.2223 -0.0114918C11.4213 -0.0114918 11.6203 0.0646715 11.772 0.216286C12.076 0.520226 12.076 1.01166 11.772 1.3156L7.09939 5.98831Z" fill="white" />
                 </svg>
             </div>
-            <h3>Chat with us</h3>
+            <h3>Chat with us</h3>;
             <div class="Chat_Listed_member">
                 <ul>
                     <li>
