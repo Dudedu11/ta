@@ -17,7 +17,7 @@
 		</div>
 		<div class="login-content">
 			<form action="proses_login.php" method="POST" >
-				<img src="img/logo.png">
+				<!-- <img src="img/logo.png"> -->
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
@@ -36,7 +36,7 @@
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
-            	<a href="#">Forgot Password?</a>
+            	<!-- <a href="#">Forgot Password?</a> -->
             	<input type="submit" class="btn" value="Masuk" name="submit">
             </form>
         </div>
