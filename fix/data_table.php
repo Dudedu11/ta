@@ -90,7 +90,7 @@ $result = $conn->query($sql);
                                                 <td><?php echo $row['tahun_pengadaan'] ?></td>
                                                 <td><?php echo $row['kondisi'] ?></td>
                                                 <td><a href="update.php? id=<?= $row['id_barang'] ?>">Update</a>
-                                                    <a href="delete.php? id=<?= $row['id_barang'] ?>">Delete</a>
+                                                    <a href="delete.php? id=<?= $row['id_barang'] ?>" onclick="return confirm('Yakin Hapus?')">Delete</a>
                                                 </td>
                                             </tr>
                                             </tr>

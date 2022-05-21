@@ -73,7 +73,7 @@ if(isset($_POST['submit'])){
 <option value=""> -- Pilih Merek -- </option>
 <?php 
 $query1="select * from merk";
-$tampil=mysqli_query($conn, $query1) or die(mysqli_error());
+$tampil=mysqli_query($conn, $query1);
 while($data=mysqli_fetch_array($tampil)) {
 ?><option value="<?php echo $data['id_merk'];?>"><?php echo $data['nama_merk'];?></option>
 <?php } ?>

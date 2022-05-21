@@ -2,6 +2,8 @@
 
 include 'connection.php';
 
+
+
 if(isset($_GET['kondisi'])){
     if ($_GET['kondisi'] == "baik") {
         $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
@@ -79,19 +81,22 @@ if(isset($_GET['kondisi'])){
 <div class="QA_table mb_30">
 
 <div class="row mx-auto">
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-danger" name="All" value="All" onClick="location.href='index.php?page=laporan'">
+<form method="get" action ="index.php?page=kondisi">
+<div class="mb-3 row">
+<div class="col-lg-4">
+<select name="kondisi" id="inputMerek" class="form-control" required>
+<option value="-"> -- Pilih Kondisi -- </option>
+<option value="-">All</option>
+<option value="baik">Baik</option>
+<option value="rusak">Rusak</option>
+<option value="rusak_berat">Rusak Berat</option>
+</select>
+<br>
+<input class="btn btn-success" type="submit" name="page" value="kondisi">
+</form>
 </div>
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-success" name="Baik" value="Baik" onClick="location.href='index.php?page=kondisi&kondisi=baik'">
-</div>
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-warning" name="Rusak" value="Rusak" onClick="location.href='index.php?page=kondisi&kondisi=rusak'">
-</div>
-<div class="col-lg-2 mx-auto">
-<input type="button" class="btn btn-danger" name="Rusak Berat" value="Rusak Berat" onClick="location.href='index.php?page=kondisi&kondisi=rusak_berat'">
-</div>
-</div>
+
+
 
 <table class="table lms_table_active ">
 <thead>
@@ -164,7 +169,6 @@ if(isset($_GET['kondisi'])){
 <div class="row">
 <div class="col-lg-12">
 <div class="footer_iner text-center">
-<p>2022 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
 </div>
 </div>
 </div>

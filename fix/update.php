@@ -20,12 +20,12 @@ $result    =mysqli_fetch_array($query);
 <?php
 if(isset($_POST['submit'])){
     $nama = $_POST['nama'];
-    $jenis = $_POST['id_jenis'];
+    $jenis = $_POST['jenis'];
     $merek = $_POST['id_merek'];
     $tahun = $_POST['tahun'];
     $kondisi = $_POST['kondisi'];
     
-    $query="UPDATE data_barang set nama_barang='$nama', tahun_pengadaan='$tahun', id_merk='$merek',id_jenis='$jenis',kondisi='$kondisi' where id_barang='$id_barang'";
+    $query="UPDATE data_barang set nama_barang='$nama', tahun_pengadaan='$tahun', id_merk='$merek',jenis='$jenis',kondisi='$kondisi' where id_barang='$id_barang'";
 			$result = mysqli_query($conn, $query);
 			if($result){
 				header("location: index.php?page=data_table");
@@ -281,17 +281,9 @@ if(isset($_POST['submit'])){
 </div>
 
 <div class="mb-3 row">
-<label class="form-label col-sm-2 col-form-label">Jenis</label>
+<label for="inputJenisBarang" class="form-label col-sm-2 col-form-label">Jenis</label>
 <div class="col-sm-8">
-<select name="id_jenis" id="inputJenis" class="form-control" required>
-<option value=""> -- Pilih Jenis -- </option>
-<?php 
-$query1="select * from jenis";
-$tampil=mysqli_query($conn, $query1) or die(mysqli_error());
-while($data=mysqli_fetch_array($tampil)) {
-?><option value="<?php echo $data['id_jenis'];?>"><?php echo $data['nama_jenis'];?></option>
-<?php } ?>
-</select>
+<input type="type" name="jenis" class="form-control" id="inputNamaBarang" placeholder="ex. Eigon Office Desk">
 </div>
 </div>
 
@@ -302,7 +294,7 @@ while($data=mysqli_fetch_array($tampil)) {
 <option value=""> -- Pilih Merek -- </option>
 <?php 
 $query1="select * from merk";
-$tampil=mysqli_query($conn, $query1) or die(mysqli_error());
+$tampil=mysqli_query($conn, $query1);
 while($data=mysqli_fetch_array($tampil)) {
 ?><option value="<?php echo $data['id_merk'];?>"><?php echo $data['nama_merk'];?></option>
 <?php } ?>

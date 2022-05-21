@@ -61,7 +61,7 @@ if (!$_SESSION["is_login"] == TRUE) {
 
     <nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
         <div class="logo d-flex justify-content-between">
-            <a href="index.html"><img src="img/polban.png" alt=""></a>
+            <a href="index.php"><img src="img/logo.png" alt="" width="150" height="150"></a>
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
             </div>
@@ -76,12 +76,16 @@ if (!$_SESSION["is_login"] == TRUE) {
                 </a>
             </li>
             <li class="">
-                <a href="index.php?page=data_table" aria-expanded="false">
+                <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="icon_menu">
                         <img src="img/menu-icon/13.svg" alt="">
                     </div>
                     <span>Table</span>
                 </a>
+                <ul>
+                    <li><a href="index.php?page=data_table">Table Satuan Barang</a></li>
+                    <li><a href="index.php?page=laporan">Table Kelopok Barang</a></li>
+                </ul>
             </li>
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -95,51 +99,6 @@ if (!$_SESSION["is_login"] == TRUE) {
                     <li><a href="index.php?page=input_merek">Input Merk</a></li>
                 </ul>
             </li>
-
-            <!-- <li class="">
-        <a href="index.php?page=input_data" aria-expanded="false">
-        <div class="icon_menu">
-        <img src="img/menu-icon/11.svg" alt="">
-        </div>
-        <span>Input Data</span>
-        </a>
-        </li> -->
-
-            <li class="">
-                <a href="index.php?page=kondisi" aria-expanded="false">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/11.svg" alt="">
-                    </div>
-                    <span>Kondisi Barang</span>
-                </a>
-            </li>
-
-            <li class="">
-                <a href="index.php?page=laporan" aria-expanded="false">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/11.svg" alt="">
-                    </div>
-                    <span>Laporan</span>
-                </a>
-            </li>
-
-            <li class="">
-                <a class="has-arrow" href="#" aria-expanded="false">
-                    <div class="icon_menu">
-                        <img src="img/menu-icon/16.svg" alt="">
-                    </div>
-                    <span>Pages</span>
-                </a>
-                <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="resister.html">Register</a></li>
-                    <li><a href="error_400.html">Error 404</a></li>
-                    <li><a href="error_500.html">Error 500</a></li>
-                    <li><a href="forgot_pass.html">Forgot Password</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                </ul>
-            </li>
-        </ul>
     </nav>
 
     <section class="main_content dashboard_part large_header_bg">
@@ -254,13 +213,13 @@ if (!$_SESSION["is_login"] == TRUE) {
                                 <img src="img/client_img.png" alt="#">
                                 <div class="profile_info_iner">
                                     <div class="profile_author_name">
-                                        <p>Neurologist </p>
-                                        <h5>Dr. Robar Smith</h5>
+                                        <p>Administator </p>
+                                        <h5>Zahra Maulida</h5>
                                     </div>
                                     <div class="profile_info_details">
                                         <a href="#">My Profile </a>
                                         <a href="#">Settings</a>
-                                        <a href="#">Log Out </a>
+                                        <a href="logout.php">Log Out </a>
                                     </div>
                                 </div>
                             </div>
@@ -293,6 +252,8 @@ if (!$_SESSION["is_login"] == TRUE) {
                 include "kondisi.php";
             } else if ($_GET['page'] == "laporan") {
                 include "laporan.php";
+            } else if ($_GET['page'] == "export") {
+                include "export.php";
             } else {
                 include "home.php";
             }
@@ -306,7 +267,6 @@ if (!$_SESSION["is_login"] == TRUE) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer_iner text-center">
-                            <p>2020 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
                         </div>
                     </div>
                 </div>

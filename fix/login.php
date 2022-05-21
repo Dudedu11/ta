@@ -10,7 +10,7 @@
 </head>
 <body>
 	<img class="wave" src="img/wave.svg">
-		<h2 class="welcome">Selamat datang di laman sistem informasi inventarisasi dan operasi aset Hotel Anara</h2>
+	<img class="wavee" src="img/welcome.svg">
 	<div class="container">
 		<div class="img">
 			<img src="img/hotel.svg">
@@ -23,7 +23,7 @@
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>Username</h5>
+           		   		<h5>Nama Pengguna</h5>
            		   		<input type="text" class="input" name="username">
            		   </div>
            		</div>
@@ -32,12 +32,12 @@
            		    	<i class="fas fa-lock"></i>
            		   </div>
            		   <div class="div">
-           		    	<h5>Password</h5>
+           		    	<h5>Kata Sandi</h5>
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
-            	<input type="submit" class="btn" value="Log in" name="submit">
+            	<input type="submit" class="btn" value="Masuk" name="submit">
             </form>
         </div>
     </div>
