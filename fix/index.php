@@ -1,13 +1,10 @@
 <?php
 session_start();
-
 if (!$_SESSION["is_login"] == TRUE) {
     header("location: login.php");
     exit;
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -59,7 +56,7 @@ if (!$_SESSION["is_login"] == TRUE) {
 <body class="crm_body_bg">
 
 
-    <nav class="sidebar vertical-scroll  ps-container ps-theme-default ps-active-y">
+    <nav class="sidebar vertical-scroll dark_sidebar ps-container ps-theme-default ps-active-y">
         <div class="logo d-flex justify-content-between">
             <a href="index.php"><img src="img/logo.png" alt="" width="150" height="150"></a>
             <div class="sidebar_close_icon d-lg-none">

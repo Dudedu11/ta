@@ -31,15 +31,20 @@ if(isset($_GET['kondisi'])){
             where data_barang.kondisi ='Rusak Berat'
             group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
         $result = $conn->query($sql);
-    }else{ 
-        $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
-            merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
-            FROM data_barang
-            INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
-            where data_barang.kondisi ='Baik'
-            group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
-        $result = $conn->query($sql);
+    }else{
+        echo '<meta http-equiv="refresh" content="0;URL=index.php?page=laporan">';
+        exit();
     }
+    // else{ 
+    //     $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+    //         merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
+    //         FROM data_barang
+    //         INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
+    //         where data_barang.kondisi ='Baik'
+    //         group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
+    //     $result = $conn->query($sql);
+
+    // }
 }else{ 
     $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
             merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
@@ -86,7 +91,7 @@ if(isset($_GET['kondisi'])){
 <div class="col-lg-4">
 <select name="kondisi" id="inputMerek" class="form-control" required>
 <option value="-"> -- Pilih Kondisi -- </option>
-<option value="-">All</option>
+<option value="all">All</option>
 <option value="baik">Baik</option>
 <option value="rusak">Rusak</option>
 <option value="rusak_berat">Rusak Berat</option>

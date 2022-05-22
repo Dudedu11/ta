@@ -276,14 +276,14 @@ if(isset($_POST['submit'])){
 <div class="mb-3 row">
 <label for="inputNamaBarang" class="form-label col-sm-2 col-form-label">Nama</label>
 <div class="col-sm-8">
-<input type="type" name="nama" class="form-control" id="inputNamaBarang" placeholder="ex. Eigon Office Desk">
+<input type="type" name="nama" class="form-control" id="inputNamaBarang" value=<?php echo $result['nama_barang']?>>
 </div>
 </div>
 
 <div class="mb-3 row">
 <label for="inputJenisBarang" class="form-label col-sm-2 col-form-label">Jenis</label>
 <div class="col-sm-8">
-<input type="type" name="jenis" class="form-control" id="inputNamaBarang" placeholder="ex. Eigon Office Desk">
+<input type="type" name="jenis" class="form-control" id="inputNamaBarang" value=<?php echo $result['jenis']?>>
 </div>
 </div>
 
@@ -291,7 +291,7 @@ if(isset($_POST['submit'])){
 <label class="form-label col-sm-2 col-form-label">Merek</label>
 <div class="col-sm-8">
 <select name="id_merek" id="inputMerek" class="form-control" required>
-<option value=""> -- Pilih Merek -- </option>
+<option value=""> <?php echo $result['jenis']?> </option>
 <?php 
 $query1="select * from merk";
 $tampil=mysqli_query($conn, $query1);

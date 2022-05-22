@@ -52,10 +52,10 @@ $result = $conn->query($sql);
             <div class="col-lg-4">
                 <select name="kondisi" id="inputMerek" class="form-control" required>
                     <option value="-"> -- Pilih Kondisi -- </option>
-                    <option value="-">All</option>
-                    <option value="Baik">Baik</option>
-                    <option value="Rusak">Rusak</option>
-                    <option value="Rusak Berat">Rusak Berat</option>
+                    <option value="all">All</option>
+                    <option value="baik">Baik</option>
+                    <option value="rusak">Rusak</option>
+                    <option value="rusak_berat">Rusak Berat</option>
                 </select>
             </div>
             <div class="col-lg-3">
@@ -138,7 +138,7 @@ $result = $conn->query($sql);
                                     </tbody>
                                 </table>
                                 <div class="create_report_btn">
-            <a href="export.php" class="btn_1 mt-1 mb-1">Export PDF</a>
+            <a href="export2.php" class="btn_1 mt-1 mb-1">Export PDF</a>
         </div>
                             </div>
                         </div>

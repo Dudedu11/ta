@@ -86,11 +86,11 @@ $result = $conn->query($sql);
                                                 <td><?php echo $row['id_barang'] ?></td>
                                                 <td><?php echo $row['nama_barang'] ?></td>
                                                 <td><?php echo $row['nama_merk'] ?></td>
-                                                <td><?php echo $row['jenis'] ?></td>
+                                                <td width="150 px"><?php echo $row['jenis'] ?></td>
                                                 <td><?php echo $row['tahun_pengadaan'] ?></td>
                                                 <td><?php echo $row['kondisi'] ?></td>
-                                                <td><a href="update.php? id=<?= $row['id_barang'] ?>">Update</a>
-                                                    <a href="delete.php? id=<?= $row['id_barang'] ?>" onclick="return confirm('Yakin Hapus?')">Delete</a>
+                                                <td><a href="delete.php? id=<?= $row['id_barang'] ?>"onclick="return confirm('Yakin Hapus?')"><i class="ti-trash"></i></a>
+                                                    <a href="update.php? id=<?= $row['id_barang'] ?>" ><i class="ti-marker-alt"></i></a>
                                                 </td>
                                             </tr>
                                             </tr>
