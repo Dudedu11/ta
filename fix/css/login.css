@@ -19,11 +19,11 @@ body{
 
 .wavee{
 	/* position: fixed; */
-	padding-top: 50px;
+	padding-top: 40px;
 	display: block;
     margin-left: auto;
     margin-right: auto;
-	width: 50vw;
+	width: 60vw;
     /* height: 10vh; */
 }
 
@@ -121,7 +121,7 @@ form{
 	bottom: -2px;
 	width: 0%;
 	height: 2px;
-	background-color: #64c5b1;
+	background-color: #182c4c;
 	transition: .4s;
 }
 
@@ -143,7 +143,7 @@ form{
 }
 
 .input-div.focus > .i > i{
-	color: #64c5b1;
+	color: #182c4c;
 }
 
 .input-div > div > input{
@@ -185,7 +185,7 @@ a:hover{
 	border-radius: 25px;
 	outline: none;
 	border: none;
-	background-image: linear-gradient(to right, #64c5b1, #64c5b1, #64c5b1);
+	background-image: linear-gradient(to right,#c2baaf, #182c4c , #c2baaf);
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;
