@@ -31,7 +31,7 @@
                         </div>
                         <div class="white_card_body">
                             <div class="row">
-                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/icon_form.jpg"></div>
+                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/menu-icon/add2.png"></div>
                                 <p class="col-lg-8">Memasukkan data barang berupa kode barang, nama barang, merk, jenis, dan kondisi.</p>
                             </div>
                         </div>
@@ -111,22 +111,6 @@
                                     <h5 class="text-center  text_color_6">HELP YOU TO MANAGE YOUR DATA</h5>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="white_card card_height_100  mb_20">
-                            <div class="white_card_header">
-                                <div class="box_header m-0">
-                                    <div class="main-title">
-                                    </div>
-                                    <div class="float-lg-right float-none sales_renew_btns justify-content-end">
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

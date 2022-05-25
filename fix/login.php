@@ -16,7 +16,7 @@
 			<img src="img/hotel.svg">
 		</div>
 		<div class="login-content">
-			<form action="proses_login.php" method="POST" >
+			<form action="" method="POST" >
 				<!-- <img src="img/logo.png"> -->
            		<div class="input-div one">
            		   <div class="i">
@@ -24,7 +24,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Nama Pengguna</h5>
-           		   		<input type="text" class="input" name="username">
+           		   		<input type="text" class="input" name="username" required>
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -33,7 +33,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Kata Sandi</h5>
-           		    	<input type="password" class="input" name="password">
+           		    	<input type="password" class="input" name="password" required>
             	   </div>
             	</div>
             	<!-- <a href="#">Forgot Password?</a> -->
@@ -45,3 +45,30 @@
 </body>
 </html>
 
+
+<?php
+    include 'connection.php';
+    session_start();
+    
+    if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $password = md5($password);
+    
+        $qry = mysqli_query($conn, "SELECT * FROM admin WHERE username = '$username' AND password = '$password' ");
+        $cek = mysqli_num_rows($qry);
+        if ($cek == 1) {
+            $_SESSION['username']=$username;
+			$_SESSION['is_login']  = true;
+            header("location: index.php");
+            exit;
+        } else {
+			?>
+            <script language="JavaScript">
+            alert('Username atau Password tidak sesuai ...');
+            document.location='./';
+        	</script>
+			<?php
+        }
+    }
+?>

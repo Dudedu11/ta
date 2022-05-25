@@ -67,7 +67,7 @@ if (!$_SESSION["is_login"] == TRUE) {
             <li class="mm-active">
                 <a href="index.php?page=home" aria-expanded="false">
                     <div class="icon_menu">
-                        <img src="img/menu-icon/dashboard.svg" alt="">
+                        <img src="img/menu-icon/home.png" alt="">
                     </div>
                     <span>Home</span>
                 </a>
@@ -75,7 +75,7 @@ if (!$_SESSION["is_login"] == TRUE) {
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="icon_menu">
-                        <img src="img/menu-icon/13.svg" alt="">
+                        <img src="img/menu-icon/cells.png" alt="">
                     </div>
                     <span>Table</span>
                 </a>
@@ -87,7 +87,7 @@ if (!$_SESSION["is_login"] == TRUE) {
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <div class="icon_menu">
-                        <img src="img/menu-icon/11.svg" alt="">
+                        <img src="img/menu-icon/add.png" alt="">
                     </div>
                     <span>Input Data</span>
                 </a>
