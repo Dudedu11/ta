@@ -96,6 +96,14 @@ if (!$_SESSION["is_login"] == TRUE) {
                     <li><a href="index.php?page=input_merek">Input Merk</a></li>
                 </ul>
             </li>
+            <li class="mm-active">
+                <a href="logout.php" aria-expanded="false">
+                    <div class="icon_menu">
+                        <img src="img/menu-icon/logout.png" alt="">
+                    </div>
+                    <span>Log Out</span>
+                </a>
+            </li>
     </nav>
 
     <section class="main_content dashboard_part large_header_bg">
@@ -228,8 +236,8 @@ if (!$_SESSION["is_login"] == TRUE) {
 
 
         <?php
-        if (isset($_GET['page']) || isset($_GET['cari'])) {
-            if (isset($_GET['cari'])) {
+        if (isset($_GET['page']) || isset($_GET['cari']) || isset($_GET['tahun'])) {
+            if (isset($_GET['cari']) || isset($_GET['tahun'])) {
                 include "data_table.php";
             } else if ($_GET['page'] == "home") {
                 include "home.php";
@@ -251,6 +259,10 @@ if (!$_SESSION["is_login"] == TRUE) {
                 include "laporan.php";
             } else if ($_GET['page'] == "export") {
                 include "export.php";
+            } else if ($_GET['page'] == "update") {
+                include "update.php";
+            } else if ($_GET['page'] == "login") {
+                include "login.php";
             } else {
                 include "home.php";
             }

@@ -31,7 +31,7 @@
                         </div>
                         <div class="white_card_body">
                             <div class="row">
-                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/menu-icon/add2.png"></div>
+                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/menu-icon/edit-table.png"></div>
                                 <p class="col-lg-8">Memasukkan data barang berupa kode barang, nama barang, merk, jenis, dan kondisi.</p>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="white_card_body">
                             <div class="row">
-                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/icon_table.jpg"></div>
+                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/menu-icon/table.png"></div>
                                 <p class="col-lg-8">Digunakan untuk melihat data barang berupa kode barang, nama barang, merk, jenis, dan kondisi.</p>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="white_card_body">
                             <div class="row">
-                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/icon_filter.jpg"></div>
+                                <div class="col-lg-4"><img class="img-fluid" width="50" height="350" src="img/menu-icon/filter.png"></div>
                                 <p class="col-lg-8">Berfungsi untuk mengetahui kondisi dari barang yang bersangkutan.</p>
                             </div>
                         </div>

@@ -33,8 +33,9 @@ $result = $conn->query($sql);
                                 </div>
                             </div>
                             <div class="QA_table mb_30">
-
-                                <div class="serach_field-area d-flex align-items-center">
+                            <div class="row">
+                            <div class="col-lg-6">
+                            <div class="serach_field-area d-flex align-items-center">
                                     <div class="search_inner">
                                         <form action="index.php?page=data_table" method="get">
                                             <div class="search_field">
@@ -45,7 +46,23 @@ $result = $conn->query($sql);
                                     </div>
                                     <span class="f_s_14 f_w_400 ml_25 white_text text_white">Apps</span>
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="serach_field-area d-flex align-items-center">
+                                    <div class="search_inner">
+                                        <form action="index.php?page=data_table" method="get">
+                                            <div class="search_field">
+                                                <input type="number" name="tahun" placeholder="Filter Tahun">
+                                            </div>
+                                            <button type="submit" value="filter"> <img src="img/icon/icon_search.svg" alt=""> </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            
 
+                          
 
                                 <table class="table lms_table_active ">
                                     <thead>
@@ -78,6 +95,21 @@ $result = $conn->query($sql);
                                             $data = $result;
                                         }
 
+                                        if (isset($_GET['tahun'])) {
+                                            $tahun = $_GET['tahun'];
+                                            $data = mysqli_query($conn, "SELECT
+                                                data_barang.id_barang, data_barang.nama_barang,
+                                                data_barang.tahun_pengadaan, data_barang.jenis,
+                                                data_barang.id_merk, data_barang.kondisi,
+                                                merk.id_merk, merk.nama_merk
+                                                FROM data_barang
+                                                INNER JOIN merk ON data_barang.id_merk = merk.id_merk
+                                                WHERE ((YEAR(CURDATE()))-data_barang.tahun_pengadaan) = " . $tahun . "
+                                                ORDER BY data_barang.nama_barang ASC");
+                                        } else {
+                                            $data = $result;
+                                        }
+
                                         $no = 1;
                                         while ($row = mysqli_fetch_array($data)) {
                                         ?>
@@ -89,8 +121,9 @@ $result = $conn->query($sql);
                                                 <td width="150 px"><?php echo $row['jenis'] ?></td>
                                                 <td><?php echo $row['tahun_pengadaan'] ?></td>
                                                 <td><?php echo $row['kondisi'] ?></td>
-                                                <td><a href="delete.php? id=<?= $row['id_barang'] ?>"onclick="return confirm('Yakin Hapus?')"><i class="ti-trash"></i></a>
-                                                    <a href="update.php? id=<?= $row['id_barang'] ?>" ><i class="ti-marker-alt"></i></a>
+                                                <td><a href="delete.php? id=<?= $row['id_barang'] ?>"onclick="return confirm('Are You Sure?')"><i class="ti-trash"></i></a>
+                                                    <a href="index.php?page=update&id=<?= $row['id_barang'] ?>" ><i class="ti-marker-alt"></i></a>
+                                                    <a href="detail.php? id=<?= $row['id_barang'] ?>" ><i class="ti-eye"></i></a>
                                                 </td>
                                             </tr>
                                             </tr>
