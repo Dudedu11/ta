@@ -129,82 +129,26 @@ if (!$_SESSION["is_login"] == TRUE) {
                                             <h4>Notifications</h4>
                                         </div>
                                         <div class="Notification_body">
-
+                                        <?php
+                                        if(!empty($_SESSION['notif'])){
+                                            foreach($_SESSION['notif'] as $key => $value){?>
                                             <div class="single_notify d-flex align-items-center">
+                                                <table >
                                                 <div class="notify_thumb">
-                                                    <a href="#"><img src="img/staf/2.png" alt=""></a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>Cool Marketing </h5>
-                                                    </a>
-                                                    <p>Lorem ipsum dolor sit amet</p>
-                                                </div>
+                                                <td><h5>Kode Barang <?php $a=$value['id_barang']; echo $a; ?> berhasil ditambahkan         </h5> </td>
                                             </div>
-
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#"><img src="img/staf/4.png" alt=""></a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>Awesome packages</h5>
-                                                    </a>
-                                                    <p>Lorem ipsum dolor sit amet</p>
-                                                </div>
+                                            <div class="notify_content">
+                                                <td>
                                             </div>
-
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#"><img src="img/staf/3.png" alt=""></a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>what a packages</h5>
-                                                    </a>
-                                                    <p>Lorem ipsum dolor sit amet</p>
-                                                </div>
+                                                <a  href="index.php?action=remove&id_barang=<?=$value['id_barang']?>"><button class="btn btn-danger btn-sm"><i>X</i></button></a></td> 
+                                                </table>
                                             </div>
-
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#"><img src="img/staf/2.png" alt=""></a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>Cool Marketing </h5>
-                                                    </a>
-                                                    <p>Lorem ipsum dolor sit amet</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#"><img src="img/staf/4.png" alt=""></a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>Awesome packages</h5>
-                                                    </a>
-                                                    <p>Lorem ipsum dolor sit amet</p>
-                                                </div>
-                                            </div>
-
-                                            <div class="single_notify d-flex align-items-center">
-                                                <div class="notify_thumb">
-                                                    <a href="#"><img src="img/staf/3.png" alt=""></a>
-                                                </div>
-                                                <div class="notify_content">
-                                                    <a href="#">
-                                                        <h5>what a packages</h5>
-                                                    </a>
-                                                    <p>Lorem ipsum dolor sit amet</p>
-                                                </div>
-                                            </div>
+                                            <?php }
+                                        }?>
                                         </div>
                                         <div class="nofity_footer">
                                             <div class="submit_button text-center pt_20">
-                                                <a href="#" class="btn_1">See More</a>
+                                                <a href="index.php?action=clear_all" class="btn_1">Clear All</a>
                                             </div>
                                         </div>
                                     </div>
@@ -236,8 +180,8 @@ if (!$_SESSION["is_login"] == TRUE) {
 
 
         <?php
-        if (isset($_GET['page']) || isset($_GET['cari']) || isset($_GET['tahun'])) {
-            if (isset($_GET['cari']) || isset($_GET['tahun'])) {
+        if (isset($_GET['page']) || isset($_GET['cari']) || isset($_GET['tahun']) ) {
+            if (isset($_GET['cari'] ) || isset($_GET['tahun'])) {
                 include "data_table.php";
             } else if ($_GET['page'] == "home") {
                 include "home.php";
@@ -268,6 +212,18 @@ if (!$_SESSION["is_login"] == TRUE) {
             }
         } else {
             include "home.php";
+        }
+
+        if(!empty($_GET['action']) == "remove") {
+            foreach($_SESSION['notif'] as $key => $value){
+                if($value['id_barang'] == $_GET['id_barang']){
+                  unset($_SESSION['notif'][$key]);
+                }
+              }
+        } else if (!empty($_GET['action']) == "clear_all") {
+                  unset($_SESSION['notif'][$key]);
+        }else{
+             
         }
         ?>
 

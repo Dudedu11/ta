@@ -15,13 +15,31 @@ if(isset($_POST['submit'])){
     $merek = $_POST['id_merek'];
     $tahun = $_POST['tahun'];
     $kondisi = $_POST['kondisi'];
+    $lokasi = $_POST['lokasi'];
     
-    $insert = mysqli_query($conn,"INSERT INTO data_barang VALUES ('$kodeBarang', '$nama', '$tahun','$merek','$jenis','$kondisi')");
+    $insert = mysqli_query($conn,"INSERT INTO data_barang VALUES ('$kodeBarang', '$nama', '$tahun', '$lokasi','$merek','$jenis','$kondisi')");
     if($insert){
         ?><meta http-equiv="refresh" content="0;URL='index.php?page=input_barang'"><?php
     }else{
         echo '<center>Gagal Upload</center>';
     }
+
+
+    if(isset($_SESSION['notif'])){
+		$session_array_id = array_column($_SESSION['notif'], "id_barang");
+		if(!in_array($_GET['id_barang'],$session_array_id)){
+			$session_array = array(
+				"id_barang" => $_GET['id_barang']
+			);
+			$_SESSION['notif'][] = $session_array;
+		}
+
+	}else{
+		$session_array = array(
+			"id_barang" => $_GET['id_barang']
+		);
+		$_SESSION['notif'][] = $session_array;
+	}
 }
 ?>
 
@@ -42,11 +60,11 @@ if(isset($_POST['submit'])){
 </div>
 </div>
 <div class="white_card_body">
-<form method="post">
+<form method="post" action="index.php?page=input_barang&id_barang=<?=$kodeBarang?>">
 <div class="mb-3 row">
 <label for="inputID" class="form-label col-sm-2 col-form-label">ID</label>
 <div class="col-sm-8">
-<input type="email" class="form-control" id="inputID" value="<?php echo $kodeBarang ?>" readonly>
+<input type="email" class="form-control" name="id_barang" id="inputID" value="<?php echo $kodeBarang ?>" readonly>
 </div>
 </div>
 
@@ -85,6 +103,25 @@ while($data=mysqli_fetch_array($tampil)) {
 <label for="inputTahun" class="form-label col-sm-2 col-form-label">Tahun Pengadaan</label>
 <div class="col-sm-8">
 <input type="number" name="tahun" min="1000" max="9999" class="form-control" id="inputTahun" placeholder="ex. 2020">
+</div>
+</div>
+
+<div class="mb-3 row">
+<label class="form-label col-sm-2 col-form-label">Lokasi</label>
+<div class="col-sm-8">
+<select name="lokasi" id="inputLokasi" class="form-control" required>
+<option value=""> -- Pilih Lokasi -- </option>
+<option value="Lobby">Lobby</option>
+<option value="Meeting Room">Meeting Room</option>
+<option value="Restaurant">Restaurant</option>
+<option value="Room">Room</option>
+<option value="Reception Counter">Reception Counter</option>
+<option value="Toilet">Toilet</option>
+<option value="Bar/Kitchen">Bar/Kitchen</option>
+<option value="Fitness Room">Fitness Room</option>
+<option value="Parking Area">Parking Area</option>
+<option value="Back Office">Back Office</option>
+</select>
 </div>
 </div>
 

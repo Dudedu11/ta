@@ -6,7 +6,7 @@
         die ("Error. No ID Selected!");    
     }
     include "connection.php";
-    $query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+    $query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
     merk.id_merk, merk.nama_merk
     FROM data_barang
     INNER JOIN merk ON data_barang.id_merk = merk.id_merk WHERE data_barang.id_barang='$id'");
@@ -106,6 +106,10 @@ QRcode::png("$barcode","kode.png","M",2,2);
         <tr>
             <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Tahun Pengadaan</th>
             <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['tahun_pengadaan']?></td>
+        </tr>
+        <tr>
+            <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Lokasi</th>
+            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['location_asset']?></td>
         </tr>
         <tr>
             <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Kondisi Barang</th>

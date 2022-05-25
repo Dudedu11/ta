@@ -85,17 +85,13 @@ $result = $conn->query($sql);
                                             $data = mysqli_query($conn, "SELECT
                                                 data_barang.id_barang, data_barang.nama_barang,
                                                 data_barang.tahun_pengadaan, data_barang.jenis,
-                                                data_barang.id_merk, data_barang.kondisi,
+                                                data_barang.id_merk, data_barang.kondisi, 
                                                 merk.id_merk, merk.nama_merk
                                                 FROM data_barang
                                                 INNER JOIN merk ON data_barang.id_merk = merk.id_merk
                                                 WHERE nama_barang LIKE '%" . $cari . "%'
                                                 ORDER BY data_barang.nama_barang ASC");
-                                        } else {
-                                            $data = $result;
-                                        }
-
-                                        if (isset($_GET['tahun'])) {
+                                        }else if(isset($_GET['tahun'])) {
                                             $tahun = $_GET['tahun'];
                                             $data = mysqli_query($conn, "SELECT
                                                 data_barang.id_barang, data_barang.nama_barang,
@@ -106,9 +102,12 @@ $result = $conn->query($sql);
                                                 INNER JOIN merk ON data_barang.id_merk = merk.id_merk
                                                 WHERE ((YEAR(CURDATE()))-data_barang.tahun_pengadaan) = " . $tahun . "
                                                 ORDER BY data_barang.nama_barang ASC");
-                                        } else {
+                                        }else{
                                             $data = $result;
                                         }
+                            
+
+                                        
 
                                         $no = 1;
                                         while ($row = mysqli_fetch_array($data)) {
