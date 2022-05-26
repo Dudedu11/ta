@@ -2,7 +2,7 @@
 
 include 'connection.php';
 
-$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+$sql = "SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
        merk.id_merk, merk.nama_merk, sum(IF(data_barang.kondisi='Baik',1,0)) as baik,
        sum(IF(data_barang.kondisi='Rusak',1,0)) as rusak,
        sum(IF(data_barang.kondisi='Rusak Berat',1,0)) as rusak_berat , count(*) as total                                  
@@ -78,14 +78,16 @@ $result = $conn->query($sql);
 
 
 
-                                <table class="table lms_table_active ">
+                                <table class="table table-striped" >
+                                    <br>
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Merk Barang</th>
                                             <th scope="col">Jenis Barang</th>
-                                            <th scope="col">Tahun Pengadaan</th>
+                                            <th scope="col" >Tahun</th>
+                                            <th scope="col">Lokasi</th>
                                             <th scope="col">Baik</th>
                                             <th scope="col">Rusak</th>
                                             <th scope="col">Rusak Berat</th>
@@ -99,7 +101,7 @@ $result = $conn->query($sql);
                                             $cari = $_GET['cari'];
                                             $data = mysqli_query($conn, "SELECT
                 data_barang.id_barang, data_barang.nama_barang,
-                data_barang.tahun_pengadaan, data_barang.jenis,
+                data_barang.tahun_pengadaan, data_barang.jenis,data_barang.location_asset,
                 data_barang.id_merk, data_barang.kondisi,
                 merk.id_merk, merk.nama_merk
                 FROM data_barang
@@ -118,7 +120,8 @@ $result = $conn->query($sql);
                                                 <td><?php echo $row['nama_barang'] ?></td>
                                                 <td><?php echo $row['nama_merk'] ?></td>
                                                 <td><?php echo $row['jenis'] ?></td>
-                                                <td><?php echo $row['tahun_pengadaan'] ?></td>
+                                                <td ><?php echo $row['tahun_pengadaan'] ?></td>
+                                                <td><?php echo $row['location_asset'] ?></td>
                                                 <td><?php echo $row['baik'] ?></td>
                                                 <td><?php echo $row['rusak'] ?></td>
                                                 <td><?php echo $row['rusak_berat'] ?></td>

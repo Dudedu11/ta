@@ -6,7 +6,7 @@
         die ("Error. No ID Selected!");    
     }
     include "connection.php";
-    $query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+    $query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
     merk.id_merk, merk.nama_merk
     FROM data_barang
     INNER JOIN merk ON data_barang.id_merk = merk.id_merk WHERE data_barang.id_barang='$id'");
@@ -57,67 +57,71 @@
 
 <link rel="stylesheet" href="css/style1.css" />
 <link rel="stylesheet" href="css/colors/default.css" id="colorSkinCSS">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 
 <?php 
-$barcode = "https://zahramaulida.000webhostapp.com/fix/detail.php?id=".$result['id_barang'];
+$id = $result['id_barang'];
+$barcode = "zahramaulida.000webhostapp.com/fix/detail.php?id=".$result['id_barang'];
 require_once('phpqrcode/qrlib.php');
-QRcode::png("$barcode","kode.png","M",2,2); 
+QRcode::png("$barcode","barcode/kode".$result['id_barang'].".png","M",2,2); 
 ?>
-<img src="kode.png" alt="">
+<img src="barcode/kode<?php echo $result['id_barang'];?>.png" alt="">
+
 
 <div class="main_content_iner ">
 <div class="container-fluid p-0">
 <div class="row justify-content-center">
-<div class="col-lg-10">
+<div class="col-lg-8">
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
 <div class="box_header m-0">
 <div class="main-title">
-<h2 class="m-0">Data Barang</h2>
+<h3 class="m-0">Data Barang</h3>
 </div>
 </div>
 </div>
 <div class="white_card_body">
 <div class="QA_section">
 <div class="white_box_tittle list_header">
+
+
    
             
 
-    <table  border=3 cellpadding="4" class="table "  style="margin-left:auto;margin-right:auto">
+    <table  cellpadding="4" class="table "  style="margin-left:auto;margin-right:auto">
         <tr style="width:30%">
-           <th  style="width:30%" scope="col" class="p-2 text-dark bg-opacity-50">No</th>
-            <td style="width:70%" size="1000" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['id_barang']?></td>
+           <th  style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">No</th>
+            <td style="width:70%" size="1000" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['id_barang']?></td>
         </tr>
         <tr>
-            <th style="width:30%" scope="col"  class="p-2 text-dark bg-opacity-50">Nama Barang</th>
-            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['nama_barang']?></td>
+            <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Nama Barang</th>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['nama_barang']?></td>
         </tr>
         <tr>
-            <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Merk Barang</th>
-            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['nama_merk']?></td>
+            <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Merk Barang</th>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['nama_merk']?></td>
         </tr>
         <tr>
-            <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Jenis Barang</th>
-            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['jenis']?></td>
+            <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Jenis Barang</th>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['jenis']?></td>
         </tr>
         <tr>
-            <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Tahun Pengadaan</th>
-            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['tahun_pengadaan']?></td>
+            <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Tahun Pengadaan</th>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['tahun_pengadaan']?></td>
         </tr>
         <tr>
-            <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Lokasi</th>
-            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['location_asset']?></td>
+            <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Lokasi</th>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['location_asset']?></td>
         </tr>
         <tr>
-            <th style="width:30%" scope="col"  class=" p-2 text-dark bg-opacity-50">Kondisi Barang</th>
-            <td style="width:70%" class=" p-2 text-dark bg-opacity-25">: <?php echo $result['kondisi']?></td>
+            <th style="width:30%" scope="col"  class="bg-success p-2 text-light bg-opacity-50">Kondisi Barang</th>
+            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['kondisi']?></td>
         </tr>
     </table>
-
 </div>
+<a href="download.php?file=../barcode/kode<?php echo $result['id_barang'];?>.png" class="btn_1 mt-1 mb-1">Export PDF</a>
 </div>
 </div>
 </div>

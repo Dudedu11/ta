@@ -23,23 +23,6 @@ if(isset($_POST['submit'])){
     }else{
         echo '<center>Gagal Upload</center>';
     }
-
-
-    if(isset($_SESSION['notif'])){
-		$session_array_id = array_column($_SESSION['notif'], "id_barang");
-		if(!in_array($_GET['id_barang'],$session_array_id)){
-			$session_array = array(
-				"id_barang" => $_GET['id_barang']
-			);
-			$_SESSION['notif'][] = $session_array;
-		}
-
-	}else{
-		$session_array = array(
-			"id_barang" => $_GET['id_barang']
-		);
-		$_SESSION['notif'][] = $session_array;
-	}
 }
 ?>
 
@@ -60,11 +43,11 @@ if(isset($_POST['submit'])){
 </div>
 </div>
 <div class="white_card_body">
-<form method="post" action="index.php?page=input_barang&id_barang=<?=$kodeBarang?>">
+<form method="post">
 <div class="mb-3 row">
 <label for="inputID" class="form-label col-sm-2 col-form-label">ID</label>
 <div class="col-sm-8">
-<input type="email" class="form-control" name="id_barang" id="inputID" value="<?php echo $kodeBarang ?>" readonly>
+<input type="email" class="form-control" id="inputID" value="<?php echo $kodeBarang ?>" readonly>
 </div>
 </div>
 
@@ -76,7 +59,7 @@ if(isset($_POST['submit'])){
 </div>
 
 <div class="mb-3 row">
-<label for="inputNamaBarang" class="form-label col-sm-2 col-form-label">Nama</label>
+<label for="inputNamaBarang" class="form-label col-sm-2 col-form-label">Jenis</label>
 <div class="col-sm-8">
 <input type="type" name="jenis" class="form-control" id="inputNamaBarang" placeholder="ex. Bahan logam emas">
 </div>

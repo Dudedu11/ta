@@ -1,7 +1,7 @@
 <?php
 include 'connection.php';
 
-$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+$sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
 merk.id_merk, merk.nama_merk
 FROM data_barang
 INNER JOIN merk ON data_barang.id_merk = merk.id_merk order by data_barang.nama_barang asc;";
@@ -64,15 +64,17 @@ $result = $conn->query($sql);
 
                           
 
-                                <table class="table lms_table_active ">
-                                    <thead>
+                                <table class="table table-striped">
+                                    <br>
+                                <thead>
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Id_Barang</th>
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Merk Barang</th>
                                             <th scope="col">Jenis Barang</th>
-                                            <th scope="col">Tahun Pengadaan</th>
+                                            <th scope="col">Tahun</th>
+                                            <th scope="col">Lokasi</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
@@ -84,7 +86,7 @@ $result = $conn->query($sql);
                                             $cari = $_GET['cari'];
                                             $data = mysqli_query($conn, "SELECT
                                                 data_barang.id_barang, data_barang.nama_barang,
-                                                data_barang.tahun_pengadaan, data_barang.jenis,
+                                                data_barang.tahun_pengadaan, data_barang.jenis, data_barang.location_asset,
                                                 data_barang.id_merk, data_barang.kondisi, 
                                                 merk.id_merk, merk.nama_merk
                                                 FROM data_barang
@@ -94,7 +96,7 @@ $result = $conn->query($sql);
                                         }else if(isset($_GET['tahun'])) {
                                             $tahun = $_GET['tahun'];
                                             $data = mysqli_query($conn, "SELECT
-                                                data_barang.id_barang, data_barang.nama_barang,
+                                                data_barang.id_barang, data_barang.nama_barang, data_barang.location_asset,
                                                 data_barang.tahun_pengadaan, data_barang.jenis,
                                                 data_barang.id_merk, data_barang.kondisi,
                                                 merk.id_merk, merk.nama_merk
@@ -119,6 +121,7 @@ $result = $conn->query($sql);
                                                 <td><?php echo $row['nama_merk'] ?></td>
                                                 <td width="150 px"><?php echo $row['jenis'] ?></td>
                                                 <td><?php echo $row['tahun_pengadaan'] ?></td>
+                                                <td><?php echo $row['location_asset'] ?></td>
                                                 <td><?php echo $row['kondisi'] ?></td>
                                                 <td><a href="delete.php? id=<?= $row['id_barang'] ?>"onclick="return confirm('Are You Sure?')"><i class="ti-trash"></i></a>
                                                     <a href="index.php?page=update&id=<?= $row['id_barang'] ?>" ><i class="ti-marker-alt"></i></a>

@@ -6,7 +6,7 @@ include 'connection.php';
 
 if(isset($_GET['kondisi'])){
     if ($_GET['kondisi'] == "baik") {
-        $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+        $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.location_asset,data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
             merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
             FROM data_barang
             INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
@@ -15,7 +15,7 @@ if(isset($_GET['kondisi'])){
         $result = $conn->query($sql);
 
     }else if ($_GET['kondisi'] == "rusak") {
-        $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+        $sql = "SELECT data_barang.id_barang,data_barang.location_asset, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
             merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
             FROM data_barang
             INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
@@ -24,7 +24,7 @@ if(isset($_GET['kondisi'])){
         $result = $conn->query($sql);
 
     }else if ($_GET['kondisi'] == "rusak_berat") {
-        $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+        $sql = "SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
             merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
             FROM data_barang
             INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
@@ -46,7 +46,7 @@ if(isset($_GET['kondisi'])){
 
     // }
 }else{ 
-    $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+    $sql = "SELECT data_barang.id_barang,data_barang.location_asset, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
             merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
             FROM data_barang
             INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
@@ -103,14 +103,16 @@ if(isset($_GET['kondisi'])){
 
 
 
-<table class="table lms_table_active ">
+<table class="table table-striped" >
+                                    <br>
 <thead>
 <tr>
 <th scope="col">No</th>    
 <th scope="col">Nama Barang</th>
 <th scope="col">Merk Barang</th>
 <th scope="col">Jenis Barang</th>
-<th scope="col">Tahun Pengadaan</th>
+<th scope="col">Tahun</th>
+<th scope="col">Lokasi</th>
 <th scope="col">Status</th>
 <th scope="col">Jumlah Barang</th>
 </tr>
@@ -121,7 +123,7 @@ if(isset($_GET['kondisi'])){
             if(isset($_GET['cari'])) {
                 $cari = $_GET['cari'];
                 $data = mysqli_query($conn,"SELECT
-                data_barang.id_barang, data_barang.nama_barang,
+                data_barang.id_barang, data_barang.nama_barang,data_barang.location_asset,
                 data_barang.tahun_pengadaan, data_barang.jenis,
                 data_barang.id_merk, data_barang.kondisi,
                 merk.id_merk, merk.nama_merk
@@ -142,6 +144,7 @@ if(isset($_GET['kondisi'])){
                 <td ><?php echo $row['nama_merk'] ?></td>
                 <td ><?php echo $row['jenis'] ?></td>
                 <td ><?php echo $row['tahun_pengadaan'] ?></td>
+                <td ><?php echo $row['location_asset'] ?></td>
                 <td ><?php echo $row['kondisi'] ?></td>
                 <td ><?php echo $row['jumlah_barang'] ?></td>
                 </tr>

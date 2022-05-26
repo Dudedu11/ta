@@ -12,7 +12,10 @@ $result = $conn->query($sql);
         die ("ID Tidak ditemukan");    
     }
     
-$query    =mysqli_query($conn, "SELECT * FROM data_barang WHERE id_barang='$id_barang'");
+$query    =mysqli_query($conn, "SELECT data_barang.id_barang, data_barang.location_asset, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+merk.id_merk, merk.nama_merk
+FROM data_barang
+INNER JOIN merk ON data_barang.id_merk = merk.id_merk  WHERE id_barang='$id_barang' order by data_barang.nama_barang asc;");
 $result    =mysqli_fetch_array($query);
 
 ?>
@@ -24,11 +27,12 @@ if(isset($_POST['submit'])){
     $merek = $_POST['id_merek'];
     $tahun = $_POST['tahun'];
     $kondisi = $_POST['kondisi'];
+    $lokasi = $_POST['lokasi'];
     
-    $query="UPDATE data_barang set nama_barang='$nama', tahun_pengadaan='$tahun', id_merk='$merek',jenis='$jenis',kondisi='$kondisi' where id_barang='$id_barang'";
+    $query="UPDATE data_barang set nama_barang='$nama', tahun_pengadaan='$tahun', location_asset='$lokasi', id_merk='$merek',jenis='$jenis',kondisi='$kondisi' where id_barang='$id_barang'";
 			$result = mysqli_query($conn, $query);
 			if($result){
-				header("location: index.php?page=data_table");
+				?><meta http-equiv="refresh" content="0;URL='index.php?page=data_table'"><?php
 				
 			}else{
 				echo "Update Gagal";
@@ -52,7 +56,7 @@ if(isset($_POST['submit'])){
 <div class="white_card_header">
 <div class="box_header m-0">
 <div class="main-title">
-<h2 class="m-0">Input Data</h2>
+<h2 class="m-0">Update Data</h2>
 </div>
 </div>
 </div>
@@ -68,14 +72,14 @@ if(isset($_POST['submit'])){
 <div class="mb-3 row">
 <label for="inputNamaBarang" class="form-label col-sm-2 col-form-label">Nama</label>
 <div class="col-sm-8">
-<input type="type" name="nama" class="form-control" id="inputNamaBarang" value=<?php echo $result['nama_barang']?>>
+<input type="type" name="nama" class="form-control" id="inputNamaBarang" value="<?php echo $result['nama_barang']?>">
 </div>
 </div>
 
 <div class="mb-3 row">
 <label for="inputJenisBarang" class="form-label col-sm-2 col-form-label">Jenis</label>
 <div class="col-sm-8">
-<input type="type" name="jenis" class="form-control" id="inputNamaBarang" value=<?php echo $result['jenis']?>>
+<input type="type" name="jenis" class="form-control" id="inputNamaBarang" value="<?php echo $result['jenis']?>">
 </div>
 </div>
 
@@ -83,7 +87,7 @@ if(isset($_POST['submit'])){
 <label class="form-label col-sm-2 col-form-label">Merek</label>
 <div class="col-sm-8">
 <select name="id_merek" id="inputMerek" class="form-control" required>
-<option value=""> <?php echo $result['jenis']?> </option>
+<option value="<?php echo $result['id_merk']?>"> <?php echo $result['nama_merk']?> </option>
 <?php 
 $query1="select * from merk";
 $tampil=mysqli_query($conn, $query1);
@@ -97,9 +101,29 @@ while($data=mysqli_fetch_array($tampil)) {
 <div class="mb-3 row">
 <label for="inputTahun" class="form-label col-sm-2 col-form-label">Tahun Pengadaan</label>
 <div class="col-sm-8">
-<input type="number" name="tahun" min="1000" max="9999" class="form-control" id="inputTahun" placeholder="ex. 2020">
+<input type="number" name="tahun" min="1000" max="9999" class="form-control" id="inputTahun" value=<?php echo $result['tahun_pengadaan']?>>
 </div>
 </div>
+
+<div class="mb-3 row">
+<label class="form-label col-sm-2 col-form-label">Lokasi</label>
+<div class="col-sm-8">
+<select name="lokasi" id="inputLokasi" class="form-control" required>
+<option value="<?php echo $result['location_asset'];?>"><?php echo $result['location_asset'];?></option>
+<option value="Lobby">Lobby</option>
+<option value="Meeting Room">Meeting Room</option>
+<option value="Restaurant">Restaurant</option>
+<option value="Room">Room</option>
+<option value="Reception Counter">Reception Counter</option>
+<option value="Toilet">Toilet</option>
+<option value="Bar/Kitchen">Bar/Kitchen</option>
+<option value="Fitness Room">Fitness Room</option>
+<option value="Parking Area">Parking Area</option>
+<option value="Back Office">Back Office</option>
+</select>
+</div>
+</div>
+
 
 <fieldset class="">
 <div class="row">
