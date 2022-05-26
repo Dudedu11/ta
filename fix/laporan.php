@@ -140,9 +140,11 @@ $result = $conn->query($sql);
 
                                     </tbody>
                                 </table>
+                                <span style="white-space: pre-line">
                                 <div class="create_report_btn">
-            <a href="export2.php" class="btn_1 mt-1 mb-1">Export PDF</a>
+            <a href="export.php" class="btn_1 mt-1 mb-1">Export PDF</a>
         </div>
+        </span>
                             </div>
                         </div>
                     </div>

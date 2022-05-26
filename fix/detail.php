@@ -68,7 +68,7 @@ $result    = mysqli_fetch_array($query);
     $id = $result['id_barang'];
     $barcode = "zahramaulida.000webhostapp.com/fix/detail.php?id=" . $result['id_barang'];
     require_once('phpqrcode/qrlib.php');
-    QRcode::png("$barcode", "barcode/kode" . $result['id_barang'] . ".png", "M", 2, 2);
+    QRcode::png("$barcode", "barcode/kode" . $result['id_barang'] . ".png", "M", 3, 3);
     ?>
 
 
@@ -98,32 +98,32 @@ $result    = mysqli_fetch_array($query);
 
                                     <table cellpadding="4" class="table " style="margin-left:auto;margin-right:auto">
                                         <tr style="width:30%">
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">No</th>
-                                            <td style="width:70%" size="1000" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['id_barang'] ?></td>
+                                            <th style="width:30%" scope="col">No</th>
+                                            <td style="width:70%" size="1000">: <?php echo $result['id_barang'] ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">Nama Barang</th>
-                                            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['nama_barang'] ?></td>
+                                            <th style="width:30%" scope="col">Nama Barang</th>
+                                            <td style="width:70%" >: <?php echo $result['nama_barang'] ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">Merk Barang</th>
-                                            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['nama_merk'] ?></td>
+                                            <th style="width:30%" scope="col">Merk Barang</th>
+                                            <td style="width:70%" >: <?php echo $result['nama_merk'] ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">Jenis Barang</th>
-                                            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['jenis'] ?></td>
+                                            <th style="width:30%" scope="col"">Jenis Barang</th>
+                                            <td style="width:70%">: <?php echo $result['jenis'] ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">Tahun Pengadaan</th>
-                                            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['tahun_pengadaan'] ?></td>
+                                            <th style="width:30%" scope="col">Tahun Pengadaan</th>
+                                            <td style="width:70%">: <?php echo $result['tahun_pengadaan'] ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">Lokasi</th>
-                                            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['location_asset'] ?></td>
+                                            <th style="width:30%" scope="col">Lokasi</th>
+                                            <td style="width:70%" >: <?php echo $result['location_asset'] ?></td>
                                         </tr>
                                         <tr>
-                                            <th style="width:30%" scope="col" class="bg-success p-2 text-light bg-opacity-50">Kondisi Barang</th>
-                                            <td style="width:70%" class="bg-success p-2 text-dark bg-opacity-25">: <?php echo $result['kondisi'] ?></td>
+                                            <th style="width:30%" scope="col">Kondisi Barang</th>
+                                            <td style="width:70%">: <?php echo $result['kondisi'] ?></td>
                                         </tr>
                                     </table>
                                 </div>

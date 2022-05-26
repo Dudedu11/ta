@@ -136,8 +136,8 @@ Rusak Berat
 </div>
 </fieldset>
 
-<div class=" row">
-<div class="col-sm-10">
+<div class="row">
+<div class="col-sm-12">
 <td><input type="submit" class="btn btn-primary" name="submit" value="Insert"></td>
 </div>
 </div>

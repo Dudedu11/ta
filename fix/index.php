@@ -224,16 +224,16 @@ if (!$_SESSION["is_login"] == TRUE) {
         }
         ?>
 
-        <div class="footer_part">
+        <!-- <div class="footer_part">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12">
                         <div class="footer_iner text-center">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <link rel='stylesheet' type='text/css' href='css/full-mini-calendar.css' />
