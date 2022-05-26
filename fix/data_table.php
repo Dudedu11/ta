@@ -22,6 +22,8 @@ $result = $conn->query($sql);
                             </div>
                         </div>
                     </div>
+                    <center>
+                    <h2>Data Inventaris</h2></center>
                     <div class="white_card_body">
                         <div class="QA_section">
                             <div class="white_box_tittle list_header">
@@ -32,6 +34,8 @@ $result = $conn->query($sql);
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="QA_table mb_30">
                             <div class="row">
                             <div class="col-lg-6">
