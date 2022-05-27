@@ -78,20 +78,21 @@
                     </div>
                 </div>
 
-                <div class="col-xl-12">
-                    <div class="card_box box_shadow mb_30">
-                        <div class="white_box_tittle ">
-                            <div class="main-title2 ">
-                                <h4 class="mb-2 nowrap">Map at a specified location</h4>
-                                <p>Display a map at a specified location and zoom level.</p>
-                            </div>
-                        </div>
-                        <div class="box_body">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0809907893267!2d106.660051614043!3d-6.119800461713435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a030d2e5e77cf%3A0x5a76945f74fcfe36!2sAnara%20Airport%20Hotel%20Terminal%203%20CGK!5e0!3m2!1sen!2sid!4v1653207820706!5m2!1sen!2sid"
-                            width="1460" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-xl-6">
+<div class="card_box box_shadow mb_30">
+<div class="white_box_tittle ">
+<div class="main-title2 ">
+<h4 class="mb-2 nowrap">Map at a specified location</h4>
+<p>Display a map at a specified location and zoom level.</p>
+</div>
+</div>
+<div class="box_body">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.0809907893267!2d106.660051614043!3d-6.119800461713435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a030d2e5e77cf%3A0x5a76945f74fcfe36!2sAnara%20Airport%20Hotel%20Terminal%203%20CGK!5e0!3m2!1sen!2sid!4v1653207820706!5m2!1sen!2sid"
+                            width="350" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</div>
+
 
 
 

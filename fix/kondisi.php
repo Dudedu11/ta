@@ -97,7 +97,7 @@ if(isset($_GET['kondisi'])){
 <option value="rusak_berat">Rusak Berat</option>
 </select>
 <br>
-<input class="btn btn-success" type="submit" name="page" value="kondisi">
+<input class="btn btn-primary" type="submit" name="page" value="kondisi">
 </form>
 </div>
 
@@ -172,16 +172,7 @@ if(isset($_GET['kondisi'])){
 </div>
 </div>
 
-<div class="footer_part">
-<div class="container">
-<div class="row">
-<div class="col-lg-12">
-<div class="footer_iner text-center">
-</div>
-</div>
-</div>
-</div>
-</div>
+
 </section>
 
 

@@ -60,7 +60,7 @@ $result = $conn->query($sql);
             </div>
             <div class="col-lg-3">
                 <br>
-                <input class="btn btn-success" type="submit" name="page" value="kondisi">
+                <input class="btn btn-primary" type="submit" name="page" value="kondisi">
             </div>
         </form>
 
@@ -156,16 +156,7 @@ $result = $conn->query($sql);
     </div>
 </div>
 
-<div class="footer_part">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer_iner text-center">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 </section>
 
 
