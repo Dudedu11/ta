@@ -1,9 +1,9 @@
 <?php
 
     require('fpdf184/fpdf.php');
-
     include 'connection.php';
-    $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+
+    $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
     merk.id_merk, merk.nama_merk, sum(IF(data_barang.kondisi='Baik',1,0)) as baik,
     sum(IF(data_barang.kondisi='Rusak',1,0)) as rusak,
     sum(IF(data_barang.kondisi='Rusak Berat',1,0)) as rusak_berat , count(*) as total                                  
@@ -22,42 +22,138 @@
     }
     }
 
-    $pdf = new FPDF('l','mm','A5');
+    if(date('l') == "Monday"){
+        $hari = "Senin";
+    } else if(date('l') == "Tuesday"){
+        $hari = "Selasa";
+    } else if(date('l') == "Wednesday"){
+        $hari = "Rabu";
+    } else if(date('l') == "Thursday"){
+        $hari = "Kamis";
+    } else if(date('l') == "Friday"){
+        $hari = "Jumat";
+    } else if(date('l') == "Saturday"){
+        $hari = "Sabtu";
+    } else if(date('l') == "Sunday"){
+        $hari = "Minggu";
+    }
+
+    if(date('m') == 01){
+        $bulan = "Januari";
+    } else if(date('m') == 02){ 
+        $bulan = "Februari";
+    } else if(date('m') == 03){
+        $bulan = "Maret";
+    } else if(date('m') == 04){
+        $bulan = "April";
+    } else if(date('m') == "05"){
+        $bulan = "Mei";
+    } else if(date('m') == 06){
+        $bulan = "Juni";
+    } else if(date('m') == 07){
+        $bulan = "Juli";
+    } else if(date('m') == "08"){
+        $bulan = "Agustus";
+    } else if(date('m') == "09"){
+        $bulan = "September";
+    } else if(date('m') == 10){
+        $bulan = "Oktober";
+    } else if(date('m') == 11){
+        $bulan = "November";
+    } else if(date('m') == 12){
+        $bulan = "Desember";
+    }
+    
+    
+    $pdf = new FPDF('p','mm','A4');
     // membuat halaman baru
     $pdf->AddPage();
-    $pdf->Line(20, 39, 190, 39);
+  //  $pdf->Line(20, 39, 190, 39);
+  $pdf->SetFont('Arial','B',20);
+  $pdf->Cell(190,7,'',0,1,'C');
+  $pdf->Image('img/logo.png',170,18,25,25);
+//   $pdf->Ln();
+//   $pdf->Ln();
+  $start_awal=$pdf->GetX(); 
+  $get_xxx = $pdf->GetX();
+  $get_yyy = $pdf->GetY();
+  
+  // $width_cell = 95; 
+  $height_cell = 5;    
+  
+  $pdf->SetFont('Arial','B',10);
+  
+  $pdf->MultiCell($width_cell=90,$height_cell,"BERITA ACARA\r\nPEMERIKSAAN PROGRESS FISIK CAPEX DAN OPEX PENGADAAN HOTEL TERMINAL 3 INT BSH",1,'C');
+  $get_xxx+=$width_cell;                           
+  $pdf->SetXY($get_xxx, $get_yyy);
+  
+  $pdf->SetFont('Arial','',10);            
+  $pdf->MultiCell($width_cell=60,$height_cell,"Nomor\t\t\t\t\t: BAC.008/OPB/09/".date('Y')."\r\nTanggal\t\t\t: ".date('d ').$bulan.date(' Y')."\r\n ",1); 
+  $get_xxx+=$width_cell;                           
+  $pdf->SetXY($get_xxx, $get_yyy);
+  
+  $pdf->Ln();
+  $get_xxx=$start_awal;                      
+  $get_yyy+=($height_cell*3);                  
+  
+  $pdf->SetXY($get_xxx, $get_yyy);
+  
+  $pdf->SetFont('Arial','B',12); 
+  $pdf->MultiCell($width_cell=90,10,'Per '.date('d ').$bulan.date(' Y').'',1,'C');
+  $get_xxx+=$width_cell;
+  $pdf->SetXY($get_xxx, $get_yyy);
+  
+  $pdf->SetFont('Arial','',12); 
+  $pdf->MultiCell($width_cell=60,$height_cell,"M.A          : \r\nRKA. Thn :",1);
+  $get_xxx+=$width_cell;
+  $pdf->SetXY($get_xxx, $get_yyy);
+
+  $pdf->Ln();
+  $pdf->Ln();
+  $pdf->Ln();
+
 
     // setting jenis font yang akan digunakan
     $pdf->SetFont('Arial','B',22);
-    $pdf->Image('img/logo.png',20,12,25,25);
+    // $pdf->Image('img/angkasa.png',150,5,40,25);
     // mencetak string 
-    $pdf->Cell(190,20,'Hotel Anara',0,1,'C');
-
-    $pdf->SetFont('Arial','B',8);
+    $pdf->SetFont('Arial','',10);
     // mencetak string 
-    $pdf->Cell(190,0,'Terminal 3 International Soekarno Hatta Airport, Tangerang, Indonesia 15125',0,1,'C');
-    $pdf->Cell(190,10,'Telepon +62-21-39508559, Email hell0@anara@gmail.com',0,1,'C');
+    $pdf->Cell(0,10,'Pada hari ini '.$hari.' tanggal '.date('d ').''.$bulan.''.date(' Y').' , saya bertanda tangan di bawah ini :',0,1,'L');
+    $pdf->Cell(0,0,'     Nama     :  Zahra Maulida',0,1,'L');
+    $pdf->Cell(0,8,'     Jabatan  :  Administator',0,1,'L');
     // $pdf->SetDash(); //restore no dash
+    $pdf->SetFont('Arial','',10);
+    
+    $pdf->SetFillColor(255,255,255);
+    // mencetak string 
+    
+    $pdf->MultiCell(0,4,'Dengan ini menyatakan bahwa telah melakukan pemeriksaan atas progres fisik Pengadaan Capex dan Opex Hotel Terminal 3 Internasional BSH per '.date('d ').$bulan.date(' Y').
+    '. Berikut adalah data pemeriksaan progres fisik Pengadaan Capex dan Opex Hotel Terminal 3 Internasional BSH per '.date('d ').$bulan.date(' Y').' :',0,1,'J');
+   
+    
 
     $pdf->SetFont('Arial','B',16);
     // mencetak string 
-    $pdf->Cell(190,10,'Data Barang',0,1,'C');
+    $pdf->Cell(190,5,'',0,1,'C');
 
     // Memberikan space kebawah agar tidak terlalu rapat
-
-    $pdf->SetFont('Arial','B',8);
+    $pdf->SetFillColor(210,221,242);
+    $pdf->SetFont( 'Arial', 'B', 10 );
+    // $pdf->SetFont( 'Arial','', 10 );
     //$pdf->SetLeftMargin(25);
-    $pdf->Cell(8 ,5,'No',1,0,'C');
-    $pdf->Cell(25 ,5,'Nama Barang',1,0,'C');
-    $pdf->Cell(20 ,5,'Merk Barang',1,0,'C');
-    $pdf->Cell(40 ,5,'Jenis Barang',1,0,'C');
-    $pdf->Cell(25 ,5,'Tahun Pengadaan',1,0,'C');
-    $pdf->Cell(10 ,5,'Baik',1,0,'C');
-    $pdf->Cell(12 ,5,'Rusak',1,0,'C');
-    $pdf->Cell(20 ,5,'Rusak Berat',1,0,'C');
-    $pdf->Cell(10 ,5,'Total',1,1,'C');
+    $pdf->Cell(7, 5,'No',1,0,'C',true);
+    $pdf->Cell(35, 5,'Nama Barang',1,0,'C',true);
+    $pdf->Cell(25, 5,'Merk Barang',1,0,'C',true);
+    $pdf->Cell(40, 5,'Jenis Barang',1,0,'C',true);
+    $pdf->Cell(12, 5,'Tahun',1,0,'C',true);
+    $pdf->Cell(18, 5,'Lokasi',1,0,'C',true);
+    $pdf->Cell(10, 5,'Baik',1,0,'C',true);
+    $pdf->Cell(12, 5,'Rusak',1,0,'C',true);
+    $pdf->Cell(22, 5,'Rusak Berat',1,0,'C',true);
+    $pdf->Cell(10, 5,'Total',1,1,'C',true);
 
-    $pdf->SetFont('Arial','',8);
+    $pdf->SetFont('Arial','',7);
 
     // $pdf->SetFont('Arial','',8);
 
@@ -66,7 +162,7 @@
         $cari = $_GET['cari'];
         $data = mysqli_query($conn,"SELECT
         data_barang.id_barang, data_barang.nama_barang,
-        data_barang.tahun_pengadaan, data_barang.jenis,
+        data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis,
         data_barang.id_merk, data_barang.kondisi,
         merk.id_merk, merk.nama_merk
         FROM data_barang
@@ -117,10 +213,10 @@ while($hasil=mysqli_fetch_array($data)){
 		$textArray=array();	//untuk menampung data untuk setiap baris
 		$tmpString="";		//untuk menampung teks untuk setiap baris (sementara)
 		
-		while($startChar < $textLength){ //perulangan sampai akhir teks
+		while($startChar < $textLength ){ //perulangan sampai akhir teks
 			//perulangan sampai karakter maksimum tercapai
 			while( 
-			$pdf->GetStringWidth( $tmpString ) < ($cellWidth-$errMargin) &&
+			$pdf->GetStringWidth($tmpString) < ($cellWidth-$errMargin) &&
 			($startChar+$maxChar) < $textLength ) {
 				$maxChar++;
 				$tmpString=substr($hasil['jenis'],$startChar,$maxChar);
@@ -136,34 +232,117 @@ while($hasil=mysqli_fetch_array($data)){
 		//dapatkan jumlah baris
 		$line=count($textArray);
 	}
-	$cellWidth=25;
+	// $cellWidth=35;
     //tulis selnya
     $pdf->SetFillColor(255,255,255);
-	$pdf->Cell(8,($line * $cellHeight),$no++,1,0,'C',true); //sesuaikan ketinggian dengan jumlah garis
-    $xPos=$pdf->GetX();
-	$yPos=$pdf->GetY();
-	$pdf->MultiCell($cellWidth,$cellHeight,$hasil['nama_barang'],'T','L'); //sesuaikan ketinggian dengan jumlah garis
-    $pdf->SetXY($xPos + $cellWidth , $yPos);
-	$pdf->Cell(20,($line * $cellHeight),$hasil['nama_merk'],1,0);
+	$pdf->Cell(7,($line * $cellHeight),$no++,1,0,'C',true); //sesuaikan ketinggian dengan jumlah garis
+    // $xPos=$pdf->GetX();
+	// $yPos=$pdf->GetY();
+	// $pdf->MultiCell($cellWidth,$cellHeight,$hasil['nama_barang'],1,'L'); //sesuaikan ketinggian dengan jumlah garis
+    // $pdf->SetXY($xPos + $cellWidth , $yPos);
+
+    $pdf->Cell(35,($line * $cellHeight),$hasil['nama_barang'],1,0);
+
+    // $cellWidth=20;
+    // $xPos=$pdf->GetX();
+	// $yPos=$pdf->GetY();
+	// $pdf->MultiCell($cellWidth,$cellHeight,$hasil['nama_merk'],1,'L'); //sesuaikan ketinggian dengan jumlah garis
+    // $pdf->SetXY($xPos + $cellWidth , $yPos);
+
+	$pdf->Cell(25,($line * $cellHeight),$hasil['nama_merk'],1,0);
+    // $xPos=$pdf->GetX();
+	// $yPos=$pdf->GetY();
+    // $cellWidth = 20;
+    // $pdf->MultiCell($cellWidth,$cellHeight,$hasil['nama_merk'],'T','L');
 
 	//memanfaatkan MultiCell sebagai ganti Cell
 	//atur posisi xy untuk sel berikutnya menjadi di sebelahnya.
 	//ingat posisi x dan y sebelum menulis MultiCell
 	$xPos=$pdf->GetX();
 	$yPos=$pdf->GetY();
-    $cellWidth = 40;
-	$pdf->MultiCell($cellWidth,$cellHeight,$hasil['jenis'],'T');
+    $cellWidth = 40 ;
+	$pdf->MultiCell($cellWidth,$cellHeight,$hasil['jenis'],1);
 	
 	//kembalikan posisi untuk sel berikutnya di samping MultiCell 
     //dan offset x dengan lebar MultiCell
 	$pdf->SetXY($xPos + $cellWidth , $yPos);
 	
-    $pdf->Cell(25,($line * $cellHeight),$hasil['tahun_pengadaan'],1,1); //sesuaikan ketinggian dengan jumlah garis
-    // $pdf->Cell(10,($line * $cellHeight),$hasil['baik'],1,0,1);
-    // $pdf->Cell(12,($line * $cellHeight),$hasil['rusak'],1,0,1);
-    // $pdf->Cell(20,($line * $cellHeight),$hasil['rusak_berat'],1,0.1);
-    // $pdf->Cell(10,($line * $cellHeight),$hasil['total'],1,0,1);
+    $pdf->Cell($w=12,($line * $cellHeight),$hasil['tahun_pengadaan'],1,1,'C'); //sesuaikan ketinggian dengan jumlah garis
+    $cellWidth += $w;
+    $pdf->SetXY($xPos + $cellWidth, $yPos);
+    $pdf->Cell($w=18,($line * $cellHeight),$hasil['location_asset'],1,1,'L');
+    $cellWidth += $w;
+    $pdf->SetXY($xPos + $cellWidth, $yPos);
+    $pdf->Cell($w=10,($line * $cellHeight),$hasil['baik'],1,1,'C');
+    $cellWidth += $w;
+    $pdf->SetXY($xPos + $cellWidth, $yPos);
+    $pdf->Cell($w=12,($line * $cellHeight),$hasil['rusak'],1,1,'C');
+    $cellWidth += $w;
+    $pdf->SetXY($xPos + $cellWidth, $yPos);
+    $pdf->Cell($w=22,($line * $cellHeight),$hasil['rusak_berat'],1,1,'C');
+    $cellWidth += $w;
+    $pdf->SetXY($xPos + $cellWidth, $yPos);
+    $pdf->Cell($w=10,($line * $cellHeight),$hasil['total'],1,1,'C');
+}
+$pdf->Cell(190,5,'',0,1,'C');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(0,4,'Demikian Berita Acara Progress Fisik ini dibuat dengan sebenarnya untuk dipergunakan sebagaimana mestinya.',0,1,'J');
+$pdf->Ln();
+$pdf->Ln();
+// $pdf->SetXY(110, $yPos);
+$yn=$pdf->GetY();
+if($yn <= 235){
+$pdf->Cell(170,4,"Disusun oleh,",0,1,'R');
+// $pdf->SetXY(120, 195);
+$pdf->Cell(0,4,'PT ANGKASA PURA PROPERTINDO',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','BU',10);
+$pdf->Cell(173,4,'Zahra Maulida',0,1,'R');
+
+$xn=$pdf->GetX();
+$yn=$pdf->GetY();
+$pdf->Image('img/ttd.jpeg',$xn+140,$yn - 30,40,25);
+}else{
+    $pdf->Cell(170,4,"Disusun oleh,",0,1,'R');
+// $pdf->SetXY(120, 195);
+$pdf->Cell(0,4,'PT ANGKASA PURA PROPERTINDO',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+
+$pdf->SetFont('Arial','',200);
+$pdf->Cell(0,4,'',0,1,'R');
+$pdf->SetFont('Arial','BU',10);
+$pdf->Cell(173,4,'Zahra Maulida',0,1,'R');
+
+$xn=$pdf->GetX();
+$yn=$pdf->GetY();
+$pdf->Image('img/ttd.jpeg',$xn+140,$yn - 30,40,25);
+
 }
 
-    $pdf->Output();
+$pdf->Output();
 ?>
