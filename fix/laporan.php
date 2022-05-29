@@ -8,7 +8,7 @@ $sql = "SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nam
        sum(IF(data_barang.kondisi='Rusak Berat',1,0)) as rusak_berat , count(*) as total                                  
        FROM data_barang
        INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
-       group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
+       group by data_barang.nama_barang, data_barang.tahun_pengadaan order by data_barang.nama_barang asc ;";
 $result = $conn->query($sql);
 
 

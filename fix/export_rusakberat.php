@@ -3,14 +3,13 @@
     require('fpdf184/fpdf.php');
     include 'connection.php';
 
-    $sql = "SELECT data_barang.id_barang, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
-    merk.id_merk, merk.nama_merk, sum(IF(data_barang.kondisi='Baik',1,0)) as baik,
-    sum(IF(data_barang.kondisi='Rusak',1,0)) as rusak,
-    sum(IF(data_barang.kondisi='Rusak Berat',1,0)) as rusak_berat , count(*) as total                                  
+    $sql = "SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+    merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
     FROM data_barang
     INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
+    where data_barang.kondisi ='Rusak Berat'
     group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
-    $result = $conn->query($sql);
+$result = $conn->query($sql);
 
     class PDF extends FPDF {
     function SetDash($black=false, $white=false) {
@@ -148,10 +147,8 @@
     $pdf->Cell(40, 5,'Jenis Barang',1,0,'C',true);
     $pdf->Cell(12, 5,'Tahun',1,0,'C',true);
     $pdf->Cell(18, 5,'Lokasi',1,0,'C',true);
-    $pdf->Cell(10, 5,'Baik',1,0,'C',true);
-    $pdf->Cell(12, 5,'Rusak',1,0,'C',true);
-    $pdf->Cell(22, 5,'Rusak Berat',1,0,'C',true);
-    $pdf->Cell(10, 5,'Total',1,1,'C',true);
+    $pdf->Cell(15, 5,'Status',1,0,'C',true);
+    $pdf->Cell(27, 5,'Jumlah Barang',1,1,'C',true);
 
     $pdf->SetFont('Arial','',7);
 
@@ -160,15 +157,12 @@
 
     if(isset($_GET['cari'])) {
         $cari = $_GET['cari'];
-        $data = mysqli_query($conn,"SELECT
-        data_barang.id_barang, data_barang.nama_barang,
-        data_barang.tahun_pengadaan, data_barang.location_asset, data_barang.jenis,
-        data_barang.id_merk, data_barang.kondisi,
-        merk.id_merk, merk.nama_merk
+        $data = mysqli_query($conn,"SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
+        merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
         FROM data_barang
-        INNER JOIN merk ON data_barang.id_merk = merk.id_merk
-        WHERE nama_barang LIKE '%".$cari."%'
-        ORDER BY data_barang.nama_barang ASC");    
+        INNER JOIN merk ON data_barang.id_merk = merk.id_merk 
+        where data_barang.kondisi ='Rusak Berat'
+        group by data_barang.nama_barang order by data_barang.nama_barang asc ;");    
     } else {
         $data = $result;  
     }
@@ -273,16 +267,10 @@ while($hasil=mysqli_fetch_array($data)){
     $pdf->Cell($w=18,($line * $cellHeight),$hasil['location_asset'],1,1,'L');
     $cellWidth += $w;
     $pdf->SetXY($xPos + $cellWidth, $yPos);
-    $pdf->Cell($w=10,($line * $cellHeight),$hasil['baik'],1,1,'C');
+    $pdf->Cell($w=15,($line * $cellHeight),$hasil['kondisi'],1,1,'C');
     $cellWidth += $w;
     $pdf->SetXY($xPos + $cellWidth, $yPos);
-    $pdf->Cell($w=12,($line * $cellHeight),$hasil['rusak'],1,1,'C');
-    $cellWidth += $w;
-    $pdf->SetXY($xPos + $cellWidth, $yPos);
-    $pdf->Cell($w=22,($line * $cellHeight),$hasil['rusak_berat'],1,1,'C');
-    $cellWidth += $w;
-    $pdf->SetXY($xPos + $cellWidth, $yPos);
-    $pdf->Cell($w=10,($line * $cellHeight),$hasil['total'],1,1,'C');
+    $pdf->Cell($w=27,($line * $cellHeight),$hasil['jumlah_barang'],1,1,'C');
 }
 $pdf->Cell(190,5,'',0,1,'C');
 $pdf->SetFont('Arial','',10);
@@ -312,6 +300,7 @@ $pdf->SetFont('Arial','',200);
 $pdf->Cell(0,4,'',0,1,'R');
 $pdf->SetFont('Arial','BU',10);
 $pdf->Cell(173,4,'Zahra Maulida',0,1,'R');
+
 
 $xn=$pdf->GetX();
 $yn=$pdf->GetY();

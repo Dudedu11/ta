@@ -1,10 +1,10 @@
-<?php
+<!-- <?php
 session_start();
 if (!$_SESSION["is_login"] == TRUE) {
     header("location: login.php");
     exit;
 }
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="zxx">
 

@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
 			$result = mysqli_query($conn, $query);
 			if($result){
 				?><meta http-equiv="refresh" content="0;URL='index.php?page=data_table'"><?php
-				
+				exit();
 			}else{
 				echo "Update Gagal";
 			}
@@ -163,17 +163,6 @@ Rusak Berat
 </div>
 </div>
 
-<div class="footer_part">
-<div class="container-fluid">
-<div class="row">
-<div class="col-lg-12">
-<div class="footer_iner text-center">
-<p>2020 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
 </section>
 
 

@@ -13,6 +13,7 @@ if(isset($_GET['kondisi'])){
             where data_barang.kondisi ='Baik'
             group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
         $result = $conn->query($sql);
+        $export = "baik";
 
     }else if ($_GET['kondisi'] == "rusak") {
         $sql = "SELECT data_barang.id_barang,data_barang.location_asset, data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
@@ -22,7 +23,7 @@ if(isset($_GET['kondisi'])){
             where data_barang.kondisi ='Rusak'
             group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
         $result = $conn->query($sql);
-
+        $export = "rusak";
     }else if ($_GET['kondisi'] == "rusak_berat") {
         $sql = "SELECT data_barang.id_barang, data_barang.location_asset,data_barang.nama_barang, data_barang.tahun_pengadaan, data_barang.jenis, data_barang.id_merk, data_barang.kondisi,
             merk.id_merk, merk.nama_merk, count(*) as jumlah_barang
@@ -31,6 +32,7 @@ if(isset($_GET['kondisi'])){
             where data_barang.kondisi ='Rusak Berat'
             group by data_barang.nama_barang order by data_barang.nama_barang asc ;";
         $result = $conn->query($sql);
+        $export = "rusak_berat";
     }else{
         echo '<meta http-equiv="refresh" content="0;URL=index.php?page=laporan">';
         exit();
@@ -161,6 +163,27 @@ if(isset($_GET['kondisi'])){
 
 </tbody>
 </table>
+<span style="white-space: pre-line">
+                                <div class="create_report_btn">
+                                    <?php
+                                    if($export == "baik"){
+                                        ?>
+                                        <a href="export_baik.php" class="btn_1 mt-1 mb-1">Export PDF</a>
+                                        <?php
+                                    } else if($export == "rusak"){
+                                        ?>
+                                        <a href="export_rusak.php" class="btn_1 mt-1 mb-1">Export PDF</a>
+                                        <?php
+                                    } else if ($export == "rusak_berat"){
+                                        ?>
+                                        <a href="export_rusakberat.php" class="btn_1 mt-1 mb-1">Export PDF</a>
+                                        <?php
+                                    }
+                                    ?>
+                                    
+            
+        </div>
+        </span>
 </div>
 </div>
 </div>

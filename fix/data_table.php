@@ -152,17 +152,7 @@ $result = $conn->query($sql);
     </div>
 </div>
 
-<div class="footer_part">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer_iner text-center">
-                    <p>2022 © Influence - Designed by <a href="#"> <i class="ti-heart"></i> </a><a href="#"> Dashboard</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 </section>
 
 <!-- Mirrored from demo.dashboardpack.com/sales-html/data_table.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 06:33:36 GMT -->
