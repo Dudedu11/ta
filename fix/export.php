@@ -294,7 +294,7 @@ $yn=$pdf->GetY();
 // if($yn <= 235){
 $pdf->Cell(170,4,"Disusun oleh,",0,1,'R');
 // $pdf->SetXY(120, 195);
-$pdf->Cell(0,4,'Hotel Anara                       ',0,1,'R');
+$pdf->Cell(167,4,'Hotel Anara',0,1,'R');
 $pdf->SetFont('Arial','',200);
 $pdf->Cell(0,4,'',0,1,'R');
 $pdf->SetFont('Arial','',200);
@@ -316,6 +316,8 @@ $pdf->Cell(173,4,'Zahra Maulida',0,1,'R');
 $xn=$pdf->GetX();
 $yn=$pdf->GetY();
 $pdf->Image('img/ttd.jpeg',$xn+140,$yn - 30,40,25);
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(173,4,'Staff Akuntansi',0,1,'R');
 // }else{
 //     $pdf->AddPage();
 //     $pdf->SetX(25);
