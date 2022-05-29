@@ -294,7 +294,7 @@ $yn=$pdf->GetY();
 // if($yn <= 235){
 $pdf->Cell(170,4,"Disusun oleh,",0,1,'R');
 // $pdf->SetXY(120, 195);
-$pdf->Cell(167,4,'Hotel Anara',0,1,'R');
+$pdf->Cell(167.3,4,'Hotel Anara',0,1,'R');
 $pdf->SetFont('Arial','',200);
 $pdf->Cell(0,4,'',0,1,'R');
 $pdf->SetFont('Arial','',200);
